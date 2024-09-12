@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
     }
 
-    // Helper function to create radio button UI components styled as images
+    // Helper function to create radio button UI components styled as CSS classes and content values
     function createRadioButtonOption(name, value, isChecked) {
         const label = document.createElement('label');
         const input = document.createElement('input');
-        const img = document.createElement('img');
+        const span = document.createElement('span');
 
         input.type = 'radio';
         input.name = name;
@@ -127,12 +127,12 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
 
-        // Example images (use actual paths for images)
-        img.src = `path_to_image/${name}_${value}.jpg`;
-        img.alt = `${name} ${value}`;
+        // Set the span's content and CSS class based on the option value
+        span.classList.add(`${name}-option`);
+        span.textContent = value; // Represent the value as text content inside the span
 
         label.appendChild(input);
-        label.appendChild(img);
+        label.appendChild(span);
 
         return label;
     }
