@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    // Fetch the font data from lttrai-font_preview-server.js
-    const fontData = await window.fetchFontData(); // Assumes fetchFontData is in lttrai-font_preview-server.js
-
-    if (!fontData) {
-        console.error('Font data could not be fetched.');
+    // Wait for the data to be fetched before proceeding with the UI build
+    let fontData;
+    try {
+        fontData = await window.fetchFontData(); // Wait until the font data is fetched
+        if (!fontData) {
+            throw new Error('Font data could not be fetched.');
+        }
+    } catch (error) {
+        console.error('Error fetching font data:', error);
         return;
     }
 
