@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    // Fetch the data from the server-side script
+    // Fetch the font data from lttrai-font_preview-server.js
     const fontData = await window.fetchFontData(); // Assumes fetchFontData is in lttrai-font_preview-server.js
 
     if (!fontData) {
@@ -9,11 +9,15 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Get available models from the font data
     const availableModels = window.getAvailableModels();
-    
-    // Initialize UI
-    buildModelOptions(availableModels);
 
-    // Build UI functions
+    // Initialize UI with preselected values
+    let selectedModel = availableModels[0];
+    let selectedEpoch = null;
+    let selectedSample = null;
+    let selectedFontNumber = null;
+
+    // Build the initial model options
+    buildModelOptions(availableModels);
 
     // Function to build the model options UI
     function buildModelOptions(models) {
@@ -32,40 +36,40 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Function to build the epoch options UI based on the selected model
     function buildEpochOptions(parameters) {
         const epochsContainer = document.querySelector('.epochs-selection');
-        epochsContainer.innerHTML = '';  // Clear previous epoch options
+        epochsContainer.innerHTML = ''; // Clear previous epoch options
 
         parameters.epochsRange.forEach(epoch => {
             const epochOption = createRadioButtonOption('epochs', epoch, epoch === parameters.epochsRange[0]);
             epochsContainer.appendChild(epochOption);
         });
 
-        selectedEpoch = parameters.epochsRange[0];  // Preselect the first epoch
+        selectedEpoch = parameters.epochsRange[0]; // Preselect the first epoch
     }
 
     // Function to build the sample options UI based on the selected model
     function buildSampleOptions(parameters) {
         const samplesContainer = document.querySelector('.samples-selection');
-        samplesContainer.innerHTML = '';  // Clear previous samples options
+        samplesContainer.innerHTML = ''; // Clear previous samples options
 
         parameters.samplesRange.forEach(sample => {
-            const sampleOption = createRadioButtonOption('samples', sample, sample === parameters.samplesRange[0]);
+            const sampleOption = createRadioButtonOption('samples', sample, sample === selectedSample || sample === parameters.samplesRange[0]);
             samplesContainer.appendChild(sampleOption);
         });
 
-        selectedSample = parameters.samplesRange[0];  // Preselect the first sample
+        selectedSample = selectedSample || parameters.samplesRange[0]; // Keep selected sample or preselect the first one
     }
 
     // Function to build the font number options UI based on the selected model
     function buildFontNumberOptions(parameters) {
         const fontContainer = document.querySelector('.font-selection');
-        fontContainer.innerHTML = '';  // Clear previous font number options
+        fontContainer.innerHTML = ''; // Clear previous font number options
 
         parameters.fontNumberRange.forEach(fontNumber => {
-            const fontOption = createRadioButtonOption('font', fontNumber, fontNumber === parameters.fontNumberRange[0]);
+            const fontOption = createRadioButtonOption('font', fontNumber, fontNumber === selectedFontNumber || fontNumber === parameters.fontNumberRange[0]);
             fontContainer.appendChild(fontOption);
         });
 
-        selectedFontNumber = parameters.fontNumberRange[0];  // Preselect the first font number
+        selectedFontNumber = selectedFontNumber || parameters.fontNumberRange[0]; // Keep selected font number or preselect the first one
     }
 
     // Event handler for when a model is changed
@@ -85,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
     }
 
-    // Helper function to create radio button UI components
+    // Helper function to create radio button UI components styled as images
     function createRadioButtonOption(name, value, isChecked) {
         const label = document.createElement('label');
         const input = document.createElement('input');
@@ -120,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
 
         // Example images (use actual paths for images)
-        img.src = `path_to_image/${name}_${value}.jpg`; 
+        img.src = `path_to_image/${name}_${value}.jpg`;
         img.alt = `${name} ${value}`;
 
         label.appendChild(input);
@@ -131,7 +135,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Function to update the preview based on selected options
     function updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
-        const fontUrl = window.constructFontUrl(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);  // Assumes constructFontUrl is in lttrai-font_preview-display.js
+        const fontUrl = window.constructFontUrl(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); // Assumes constructFontUrl is in lttrai-font_preview-display.js
         console.log('Font requested:', fontUrl);
 
         // Display the font (assumed that downloadAndDisplayFont is in lttrai-font_preview-display.js)

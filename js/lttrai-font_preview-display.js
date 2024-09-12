@@ -1,17 +1,16 @@
 // Base URL for accessing the fonts on the server
-const assetsBaseUrl = 'https://assets.lttrcorp.com/ai_testing_samples/_lttr_24_base/';
+const assetsBaseUrl = 'https://assets.lttrcorp.com/ai_testing_samples/';
 
-// Function to construct the font URL based on selected model, epochs, samples, and font number
+// Function to construct the font URL based on selected model, epoch, sample, and font number
 function constructFontUrl(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
-    const fontUrl = `${assetsBaseUrl}NewFont-${selectedModel}-${selectedEpoch}-${selectedSample}-${selectedFontNumber}.woff2`;
-    return fontUrl;
+    return `${assetsBaseUrl}${selectedModel}/NewFont-${selectedModel}-${selectedEpoch}-${selectedSample}-${selectedFontNumber}.woff2`;
 }
 
-// Function to download the font and inject it into the page for preview
+// Function to download the font and apply it to the preview element
 function downloadAndDisplayFont(fontUrl) {
     const fontFamily = extractFontFamilyFromUrl(fontUrl);
 
-    // Check if the @font-face rule already exists
+    // Inject the @font-face rule if it doesn't exist
     if (!document.getElementById(`font-style-${fontFamily}`)) {
         injectFontFaceRule(fontFamily, fontUrl);
     }
@@ -25,14 +24,14 @@ function downloadAndDisplayFont(fontUrl) {
     }
 }
 
-// Helper function to extract a font family name from the URL (to create a unique font-family name)
+// Helper function to extract a unique font-family name from the font URL
 function extractFontFamilyFromUrl(fontUrl) {
     const fontFileName = fontUrl.split('/').pop(); // Extract the file name from the URL
     const fontFamily = fontFileName.replace('.woff2', ''); // Remove the .woff2 extension
     return `lttrface-preview-${fontFamily}`;  // Return a unique font-family name
 }
 
-// Function to inject the @font-face rule dynamically into the document
+// Function to inject a dynamic @font-face rule into the document head
 function injectFontFaceRule(fontFamily, fontUrl) {
     const styleElement = document.createElement('style');
     styleElement.id = `font-style-${fontFamily}`;  // Set a unique ID for the style element

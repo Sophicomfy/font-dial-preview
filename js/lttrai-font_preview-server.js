@@ -21,7 +21,7 @@ function getAvailableModels() {
         console.error('Font data not available. Please ensure data is fetched.');
         return [];
     }
-    return Object.keys(fontData.model);  // Extract available models
+    return Object.keys(fontData.model);  // Extract available models from JSON
 }
 
 // Function to get the parameters (epochs, samples, font numbers) for a selected model
@@ -30,37 +30,27 @@ function getParametersForModel(selectedModel) {
         console.error('Selected model not found in font data.');
         return null;
     }
-    return fontData.model[selectedModel].parameters;  // Return parameters for the selected model
+    return fontData.model[selectedModel];  // Return full model parameters (epochsRange, samplesRange, fontNumberRange)
 }
 
 // Function to find the corresponding font based on the selected model, epochs, samples, and font number
-function findFont(selectedModel, epochs, samples, fontNumber) {
+function findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
     if (!fontData || !fontData.model[selectedModel]) {
         console.error('Selected model not found in font data.');
         return null;
     }
 
     const fonts = fontData.model[selectedModel].generatedFonts;
-    return fonts.find(font => {
-        const regex = new RegExp(`${selectedModel}-${epochs}-${samples}-${fontNumber}`);
-        return regex.test(font.fontUrl);
-    });
-}
+    const font = Object.values(fonts).find(font => 
+        font.epochs === selectedEpoch && 
+        font.samples === selectedSample && 
+        font.fontNumber === selectedFontNumber
+    );
 
-// Function to inject @font-face rule dynamically into the document
-function injectFontFaceRule(fontFamily, fontUrl) {
-    const existingStyleElement = document.querySelector(`#font-style-${fontFamily}`);
-
-    // If the font-face rule already exists, skip injecting again
-    if (!existingStyleElement) {
-        const styleElement = document.createElement('style');
-        styleElement.id = `font-style-${fontFamily}`;
-        styleElement.innerText = `
-            @font-face {
-                font-family: '${fontFamily}';
-                src: url('${fontUrl}') format('woff2');
-            }
-        `;
-        document.head.appendChild(styleElement);
+    if (font) {
+        return font.fontUrl;  // Return the URL of the matching font
+    } else {
+        console.error('Matching font not found.');
+        return null;
     }
 }
