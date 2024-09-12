@@ -40,17 +40,33 @@ function findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumb
         return null;
     }
 
+    // Log the selected parameters to see what the script is searching for
+    console.log('Searching for font with parameters:');
+    console.log('Model:', selectedModel);
+    console.log('Epochs:', selectedEpoch);
+    console.log('Samples:', selectedSample);
+    console.log('Font Number:', selectedFontNumber);
+
+    // Get the generated fonts for the selected model
     const fonts = fontData.model[selectedModel].generatedFonts;
-    const font = Object.values(fonts).find(font => 
+    
+    // Log the available fonts for the selected model
+    console.log('Available fonts for model', selectedModel, ':', fonts);
+
+    // Find the font that matches the selected parameters
+    const font = Object.values(fonts).find(font =>
         font.epochs === selectedEpoch && 
         font.samples === selectedSample && 
         font.fontNumber === selectedFontNumber
     );
 
-    if (font) {
+    if (font && font.fontUrl) {
+        // Log the found font URL
+        console.log('Matching font found:', font.fontUrl);
         return font.fontUrl;  // Return the URL of the matching font
     } else {
-        console.error('Matching font not found.');
+        console.error('Matching font not found in font data.');
         return null;
     }
 }
+
