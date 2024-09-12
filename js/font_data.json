@@ -1,0 +1,489 @@
+{
+    "model": {
+        "lttr_24_base": {
+            "modelName": "lttr_24_base",
+            "epochsRange": [
+                300,
+                500,
+                600
+            ],
+            "samplesRange": [
+                20,
+                30,
+                50,
+                100
+            ],
+            "fontNumberRange": [
+                "0000",
+                "0001",
+                "0002",
+                "0003",
+                "0004",
+                "0005",
+                "0006",
+                "0007",
+                "0008",
+                "0009",
+                "0010",
+                "0011",
+                "0012"
+            ],
+            "generatedFonts": {
+                "0005": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 600,
+                    "samples": 50,
+                    "fontNumber": "0005",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-600-50-0005.woff2"
+                },
+                "0011": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 300,
+                    "samples": 30,
+                    "fontNumber": "0011",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-300-30-0011.woff2"
+                },
+                "0006": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 500,
+                    "samples": 20,
+                    "fontNumber": "0006",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-500-20-0006.woff2"
+                },
+                "0008": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 300,
+                    "samples": 30,
+                    "fontNumber": "0008",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-300-30-0008.woff2"
+                },
+                "0012": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 600,
+                    "samples": 20,
+                    "fontNumber": "0012",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-600-20-0012.woff2"
+                },
+                "0007": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 300,
+                    "samples": 20,
+                    "fontNumber": "0007",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-300-20-0007.woff2"
+                },
+                "0004": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 600,
+                    "samples": 30,
+                    "fontNumber": "0004",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-600-30-0004.woff2"
+                },
+                "0010": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 500,
+                    "samples": 30,
+                    "fontNumber": "0010",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-500-30-0010.woff2"
+                },
+                "0009": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 500,
+                    "samples": 30,
+                    "fontNumber": "0009",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-500-30-0009.woff2"
+                },
+                "0003": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 600,
+                    "samples": 100,
+                    "fontNumber": "0003",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-600-100-0003.woff2"
+                },
+                "0000": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 500,
+                    "samples": 20,
+                    "fontNumber": "0000",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-500-20-0000.woff2"
+                },
+                "0001": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 600,
+                    "samples": 100,
+                    "fontNumber": "0001",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-600-100-0001.woff2"
+                },
+                "0002": {
+                    "modelName": "lttr_24_base",
+                    "epochs": 600,
+                    "samples": 30,
+                    "fontNumber": "0002",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_24_base/NewFont-lttr_24_base-600-30-0002.woff2"
+                }
+            }
+        },
+        "dvf_orig": {
+            "modelName": "dvf_orig",
+            "epochsRange": [
+                600
+            ],
+            "samplesRange": [
+                20,
+                30,
+                50,
+                100
+            ],
+            "fontNumberRange": [
+                "0000",
+                "0001",
+                "0002",
+                "0003",
+                "0004",
+                "0005",
+                "0006",
+                "0007",
+                "0008",
+                "0009",
+                "0010",
+                "0011",
+                "0012"
+            ],
+            "generatedFonts": {
+                "0001": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 50,
+                    "fontNumber": "0001",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-50-0001.woff2"
+                },
+                "0003": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 100,
+                    "fontNumber": "0003",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-100-0003.woff2"
+                },
+                "0009": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 20,
+                    "fontNumber": "0009",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-20-0009.woff2"
+                },
+                "0008": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 20,
+                    "fontNumber": "0008",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-20-0008.woff2"
+                },
+                "0012": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 20,
+                    "fontNumber": "0012",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-20-0012.woff2"
+                },
+                "0011": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 20,
+                    "fontNumber": "0011",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-20-0011.woff2"
+                },
+                "0010": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 20,
+                    "fontNumber": "0010",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-20-0010.woff2"
+                },
+                "0007": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 50,
+                    "fontNumber": "0007",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-50-0007.woff2"
+                },
+                "0005": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 100,
+                    "fontNumber": "0005",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-100-0005.woff2"
+                },
+                "0002": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 30,
+                    "fontNumber": "0002",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-30-0002.woff2"
+                },
+                "0000": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 30,
+                    "fontNumber": "0000",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-30-0000.woff2"
+                },
+                "0004": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 30,
+                    "fontNumber": "0004",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-30-0004.woff2"
+                },
+                "0006": {
+                    "modelName": "dvf_orig",
+                    "epochs": 600,
+                    "samples": 30,
+                    "fontNumber": "0006",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_orig/NewFont-dvf_orig-600-30-0006.woff2"
+                }
+            }
+        },
+        "dvf_fine_tuned_on_lttr_24": {
+            "modelName": "dvf_fine_tuned_on_lttr_24",
+            "epochsRange": [
+                800,
+                1000
+            ],
+            "samplesRange": [
+                20,
+                30,
+                50,
+                100
+            ],
+            "fontNumberRange": [
+                "0000",
+                "0001",
+                "0002",
+                "0003",
+                "0004",
+                "0005",
+                "0006",
+                "0007",
+                "0008",
+                "0009",
+                "0010",
+                "0011",
+                "0012"
+            ],
+            "generatedFonts": {
+                "0000": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 800,
+                    "samples": 50,
+                    "fontNumber": "0000",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-800-50-0000.woff2"
+                },
+                "0005": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 800,
+                    "samples": 30,
+                    "fontNumber": "0005",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-800-30-0005.woff2"
+                },
+                "0006": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 20,
+                    "fontNumber": "0006",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-20-0006.woff2"
+                },
+                "0008": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 50,
+                    "fontNumber": "0008",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-50-0008.woff2"
+                },
+                "0002": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 800,
+                    "samples": 50,
+                    "fontNumber": "0002",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-800-50-0002.woff2"
+                },
+                "0004": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 20,
+                    "fontNumber": "0004",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-20-0004.woff2"
+                },
+                "0007": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 800,
+                    "samples": 30,
+                    "fontNumber": "0007",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-800-30-0007.woff2"
+                },
+                "0011": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 50,
+                    "fontNumber": "0011",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-50-0011.woff2"
+                },
+                "0009": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 30,
+                    "fontNumber": "0009",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-30-0009.woff2"
+                },
+                "0003": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 800,
+                    "samples": 30,
+                    "fontNumber": "0003",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-800-30-0003.woff2"
+                },
+                "0010": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 30,
+                    "fontNumber": "0010",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-30-0010.woff2"
+                },
+                "0012": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 1000,
+                    "samples": 30,
+                    "fontNumber": "0012",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-1000-30-0012.woff2"
+                },
+                "0001": {
+                    "modelName": "dvf_fine_tuned_on_lttr_24",
+                    "epochs": 800,
+                    "samples": 30,
+                    "fontNumber": "0001",
+                    "fontUrl": "./web/ai_testing_samples/_dvf_fine_tuned_on_lttr_24/NewFont-dvf_fine_tuned_on_lttr_24-800-30-0001.woff2"
+                }
+            }
+        },
+        "lttr_fine_tuned_on_dvf": {
+            "modelName": "lttr_fine_tuned_on_dvf",
+            "epochsRange": [
+                1000,
+                1100,
+                1200
+            ],
+            "samplesRange": [
+                20,
+                30,
+                50,
+                100
+            ],
+            "fontNumberRange": [
+                "0000",
+                "0001",
+                "0002",
+                "0003",
+                "0004",
+                "0005",
+                "0006",
+                "0007",
+                "0008",
+                "0009",
+                "0010",
+                "0011",
+                "0012"
+            ],
+            "generatedFonts": {
+                "0004": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1100,
+                    "samples": 20,
+                    "fontNumber": "0004",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1100-20-0004.woff2"
+                },
+                "0007": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1000,
+                    "samples": 20,
+                    "fontNumber": "0007",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1000-20-0007.woff2"
+                },
+                "0003": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1200,
+                    "samples": 50,
+                    "fontNumber": "0003",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1200-50-0003.woff2"
+                },
+                "0012": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1000,
+                    "samples": 50,
+                    "fontNumber": "0012",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1000-50-0012.woff2"
+                },
+                "0001": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1200,
+                    "samples": 100,
+                    "fontNumber": "0001",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1200-100-0001.woff2"
+                },
+                "0002": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1100,
+                    "samples": 20,
+                    "fontNumber": "0002",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1100-20-0002.woff2"
+                },
+                "0009": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1100,
+                    "samples": 100,
+                    "fontNumber": "0009",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1100-100-0009.woff2"
+                },
+                "0000": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1200,
+                    "samples": 30,
+                    "fontNumber": "0000",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1200-30-0000.woff2"
+                },
+                "0005": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1000,
+                    "samples": 20,
+                    "fontNumber": "0005",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1000-20-0005.woff2"
+                },
+                "0010": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1100,
+                    "samples": 100,
+                    "fontNumber": "0010",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1100-100-0010.woff2"
+                },
+                "0006": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1200,
+                    "samples": 30,
+                    "fontNumber": "0006",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1200-30-0006.woff2"
+                },
+                "0008": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1000,
+                    "samples": 30,
+                    "fontNumber": "0008",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1000-30-0008.woff2"
+                },
+                "0011": {
+                    "modelName": "lttr_fine_tuned_on_dvf",
+                    "epochs": 1000,
+                    "samples": 30,
+                    "fontNumber": "0011",
+                    "fontUrl": "./web/ai_testing_samples/_lttr_fine_tuned_on_dvf/NewFont-lttr_fine_tuned_on_dvf-1000-30-0011.woff2"
+                }
+            }
+        }
+    }
+}
