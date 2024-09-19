@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!fontData) {
             throw new Error('Font data could not be fetched.');
         }
-        console.log('Font data fetched successfully'); // Log when data is fetched
+        console.log('Fetched `fontData` are ready for UI to be builded'); // Log when data is fetched
     } catch (error) {
         console.error('Error fetching font data:', error);
         return;

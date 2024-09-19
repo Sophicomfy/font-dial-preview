@@ -7,10 +7,10 @@ async function fetchFontData() {
     try {
         const response = await fetch(jsonUrl);
         fontData = await response.json();
-        console.log('Font data fetched successfully');
+        console.log('`JSON` with the font data fetched from the server successfully and parsed into the `fontData`');
         return fontData;
     } catch (error) {
-        console.error('Error fetching font data:', error);
+        console.error('Error fetching `JSON` file:', error);
         throw error;
     }
 }
@@ -18,7 +18,7 @@ async function fetchFontData() {
 // Function to get the list of available models
 function getAvailableModels() {
     if (!fontData) {
-        console.error('Font data not available. Please ensure data is fetched.');
+        console.error('`JSON` file not available. Please ensure data is fetched.');
         return [];
     }
     return Object.keys(fontData.model);  // Extract available models from JSON
@@ -27,7 +27,7 @@ function getAvailableModels() {
 // Function to get the parameters (epochs, samples, font numbers) for a selected model
 function getParametersForModel(selectedModel) {
     if (!fontData || !fontData.model[selectedModel]) {
-        console.error('Selected model not found in font data.');
+        console.error('Selected model not found in `JSON` file.');
         return null;
     }
     return fontData.model[selectedModel];  // Return full model parameters (epochsRange, samplesRange, fontNumberRange)
@@ -36,7 +36,7 @@ function getParametersForModel(selectedModel) {
 // Function to find the corresponding font based on the selected model, epochs, samples, and font number
 function findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
     if (!fontData || !fontData.model[selectedModel]) {
-        console.error('Selected model not found in font data.');
+        console.error('Selected model not found in `JSON` file.');
         return null;
     }
 
@@ -54,7 +54,7 @@ function findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumb
         console.log('Matching font found:', font.fontUrl);
         return font.fontUrl;  // Return the URL of the matching font
     } else {
-        console.error('Matching font not found in font data.');
+        console.error('Matching font not found in `JSON` file.');
         return null;
     }
 }
