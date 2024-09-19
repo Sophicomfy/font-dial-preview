@@ -43,3 +43,14 @@ function injectFontFaceRule(fontFamily, fontUrl) {
     `;
     document.head.appendChild(styleElement);  // Append the new style to the document head
 }
+
+// Function to trigger the preview update based on the selected model, epoch, sample, and font number
+function triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
+    const fontUrl = window.findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); // Assumes findFont is in lttrai-font_preview-server.js
+    if (fontUrl) {
+        // Pass the fontUrl to download and display the font
+        downloadAndDisplayFont(fontUrl); 
+    } else {
+        console.error('Font URL could not be found for the selected combination.');
+    }
+}
