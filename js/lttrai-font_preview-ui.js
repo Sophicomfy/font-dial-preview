@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!fontData) {
             throw new Error('Font data could not be fetched.');
         }
+        console.log('Font data fetched successfully'); // Log when data is fetched
     } catch (error) {
         console.error('Error fetching font data:', error);
         return;
@@ -19,6 +20,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     let selectedEpoch = null;
     let selectedSample = null;
     let selectedFontNumber = null;
+
+    // Log initial selections
+    console.log('Initial model selected:', selectedModel);
 
     // Build the initial model options
     buildModelOptions(availableModels);
@@ -48,6 +52,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
 
         selectedEpoch = parameters.epochsRange[0]; // Preselect the first epoch
+        console.log('Initial epoch selected:', selectedEpoch); // Log selected epoch
     }
 
     // Function to build the sample options UI based on the selected model
@@ -60,7 +65,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             samplesContainer.appendChild(sampleOption);
         });
 
-        selectedSample = selectedSample || parameters.samplesRange[0]; // Keep selected sample or preselect the first one
+        selectedSample = selectedSample || parameters.samplesRange[0]; // Preselect the first sample
+        console.log('Initial sample selected:', selectedSample); // Log selected sample
     }
 
     // Function to build the font number options UI based on the selected model
@@ -73,7 +79,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             fontContainer.appendChild(fontOption);
         });
 
-        selectedFontNumber = selectedFontNumber || parameters.fontNumberRange[0]; // Keep selected font number or preselect the first one
+        selectedFontNumber = selectedFontNumber || parameters.fontNumberRange[0]; // Preselect the first font number
+        console.log('Initial font number selected:', selectedFontNumber); // Log selected font number
     }
 
     // Event handler for when a model is changed
@@ -84,65 +91,34 @@ document.addEventListener('DOMContentLoaded', async function() {
             return;
         }
 
+        // Log the selected model
+        console.log('Model changed to:', selectedModel);
+
         // Update UI with new options for epochs, samples, and font numbers
         buildEpochOptions(parameters);
         buildSampleOptions(parameters);
         buildFontNumberOptions(parameters);
 
-        // Update the preview based on the initial combination
-        updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
+        // Trigger the preview update by notifying the display script
+        triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
     }
 
-    // Helper function to create radio button UI components styled as CSS classes and content values
-    function createRadioButtonOption(name, value, isChecked) {
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        const span = document.createElement('span');
+    // Function to trigger the preview update via the display script
+    function triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
+        // Log the selected values before updating the preview
+        console.log('Triggering preview update with:');
+        console.log('Model:', selectedModel);
+        console.log('Epoch:', selectedEpoch);
+        console.log('Sample:', selectedSample);
+        console.log('Font Number:', selectedFontNumber);
 
-        input.type = 'radio';
-        input.name = name;
-        input.value = value;
-        input.checked = isChecked;
-        input.addEventListener('change', function(event) {
-            switch (name) {
-                case 'model':
-                    selectedModel = value;
-                    handleModelChange(value);
-                    break;
-                case 'epochs':
-                    selectedEpoch = value;
-                    console.log('Epoch changed to:', selectedEpoch);
-                    updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
-                    break;
-                case 'samples':
-                    selectedSample = value;
-                    console.log('Samples changed to:', selectedSample);
-                    updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
-                    break;
-                case 'font':
-                    selectedFontNumber = value;
-                    console.log('Font No changed to:', selectedFontNumber);
-                    updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
-                    break;
-            }
-        });
-
-        // Set the span's content and CSS class based on the option value
-        span.classList.add(`${name}-option`);
-        span.textContent = value; // Represent the value as text content inside the span
-
-        label.appendChild(input);
-        label.appendChild(span);
-
-        return label;
-    }
-
-    // Function to update the preview based on selected options
-    function updatePreview(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
-        const fontUrl = window.constructFontUrl(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); // Assumes constructFontUrl is in lttrai-font_preview-display.js
-        console.log('Font requested:', fontUrl);
-
-        // Display the font (assumed that downloadAndDisplayFont is in lttrai-font_preview-display.js)
-        window.downloadAndDisplayFont(fontUrl);
+        const fontUrl = window.findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); // Assumes findFont is in lttrai-font_preview-server.js
+        if (fontUrl) {
+            console.log('Font URL retrieved from JSON:', fontUrl); // Log the retrieved font URL
+            // Pass the fontUrl to the display script
+            window.downloadAndDisplayFont(fontUrl); // Assumes downloadAndDisplayFont is in lttrai-font_preview-display.js
+        } else {
+            console.error('Font URL could not be found for the selected combination.');
+        }
     }
 });
