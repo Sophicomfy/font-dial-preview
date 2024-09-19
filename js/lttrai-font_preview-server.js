@@ -42,6 +42,15 @@ function findFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumb
 
     const fonts = fontData.model[selectedModel].generatedFonts;
 
+    console.log('Searching for font with parameters:');
+    console.log('Model:', selectedModel);
+    console.log('Epochs:', selectedEpoch);
+    console.log('Samples:', selectedSample);
+    console.log('Font Number:', selectedFontNumber);
+
+    // Log the available fonts for the selected model
+    console.log('Total number of fonts for model', selectedModel, ':', Object.keys(fonts).length);
+    
     // Search for the font based on selectedEpoch, selectedSample, and selectedFontNumber
     const font = Object.values(fonts).find(font =>
         font.epochs === selectedEpoch &&
