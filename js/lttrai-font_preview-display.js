@@ -1,18 +1,16 @@
 // Base URL for accessing the fonts on the server
-const assetsBaseUrl = 'https://assets.lttrcorp.com/ai_testing_samples/';
-
-// Function to construct the font URL based on selected model, epoch, sample, and font number
-function constructFontUrl(selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
-    return `${assetsBaseUrl}${selectedModel}/NewFont-${selectedModel}-${selectedEpoch}-${selectedSample}-${selectedFontNumber}.woff2`;
-}
+const assetsBaseUrl = 'https://assets.lttrcorp.com/';
 
 // Function to download the font and apply it to the preview element
 function downloadAndDisplayFont(fontUrl) {
-    const fontFamily = extractFontFamilyFromUrl(fontUrl);
+    // Replace './web/' with the correct base URL
+    const updatedFontUrl = fontUrl.replace('./web/', assetsBaseUrl);
+
+    const fontFamily = extractFontFamilyFromUrl(updatedFontUrl);
 
     // Inject the @font-face rule if it doesn't exist
     if (!document.getElementById(`font-style-${fontFamily}`)) {
-        injectFontFaceRule(fontFamily, fontUrl);
+        injectFontFaceRule(fontFamily, updatedFontUrl);
     }
 
     // Apply the font to the preview element
