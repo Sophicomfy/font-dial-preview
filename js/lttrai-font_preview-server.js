@@ -7,6 +7,7 @@ async function fetchFontData() {
     try {
         const response = await fetch(jsonUrl);
         fontData = await response.json();
+        console.log('Parsed JSON:', fontData);
         console.log('`JSON` with the font data fetched from the server successfully and parsed into the `fontData`');
         return fontData;
     } catch (error) {
