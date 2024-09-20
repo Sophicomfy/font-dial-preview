@@ -11,12 +11,16 @@ function downloadAndDisplayFont(fontUrl) {
     // Inject the @font-face rule if it doesn't exist
     if (!document.getElementById(`font-style-${fontFamily}`)) {
         injectFontFaceRule(fontFamily, updatedFontUrl);
+        console.log(`@font-face rule injected for ${fontFamily}`);
+    } else {
+        console.log(`@font-face rule already exists for ${fontFamily}`);
     }
 
     // Apply the font to the preview element
     const previewElement = document.querySelector('[data-lttrface-preview]');
     if (previewElement) {
         previewElement.style.fontFamily = fontFamily;
+        console.log(`Font family ${fontFamily} applied to the preview element.`);
     } else {
         console.error('Preview element not found.');
     }
