@@ -8,23 +8,27 @@ function downloadAndDisplayFont(fontUrl) {
 
     const fontFamily = extractFontFamilyFromUrl(updatedFontUrl);
 
-    // Inject the @font-face rule if it doesn't exist
-    if (!document.getElementById(`font-style-${fontFamily}`)) {
-        injectFontFaceRule(fontFamily, updatedFontUrl);
-        console.log(`@font-face rule injected for ${fontFamily}`);
-    } else {
-        console.log(`@font-face rule already exists for ${fontFamily}`);
-    }
+    // Use the FontFace API to ensure the font is fully loaded before applying
+    const font = new FontFace(fontFamily, `url(${updatedFontUrl})`);
 
-    // Apply the font to the preview element
-    const previewElement = document.querySelector('[data-lttrface-preview]');
-    if (previewElement) {
-        previewElement.style.fontFamily = fontFamily;
-        console.log(`Font family ${fontFamily} applied to the preview element.`);
-    } else {
-        console.error('Preview element not found.');
-    }
+    font.load().then(function(loadedFont) {
+        // Add the loaded font to the document
+        document.fonts.add(loadedFont);
+        console.log(`Font ${fontFamily} loaded and added to the document.`);
+
+        // Apply the font to the preview element
+        const previewElement = document.querySelector('[data-lttrface-preview]');
+        if (previewElement) {
+            previewElement.style.fontFamily = fontFamily;
+            console.log(`Font family ${fontFamily} applied to the preview element.`);
+        } else {
+            console.error('Preview element not found.');
+        }
+    }).catch(function(error) {
+        console.error('Failed to load font:', error);
+    });
 }
+
 
 // Helper function to extract a unique font-family name from the font URL
 function extractFontFamilyFromUrl(fontUrl) {
