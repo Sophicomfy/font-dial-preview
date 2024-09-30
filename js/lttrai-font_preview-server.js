@@ -3,7 +3,7 @@ let fontData = null;
 
 // Function to fetch the font data (JSON) from the server
 async function fetchFontData() {
-    const jsonUrl = 'https://assets.lttrcorp.com/ai_testing_samples/fonts_data.json';
+    const jsonUrl = 'https://assets.lttrcorp.com/2024-10-01-ai-font-tester/ai_testing_samples/fonts_data.json';
     try {
         const response = await fetch(jsonUrl);
         fontData = await response.json();

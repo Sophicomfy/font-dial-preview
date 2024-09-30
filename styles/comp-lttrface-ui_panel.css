@@ -1,144 +1,92 @@
-.lttrface-ui_pane {
-	--icon-size: 2.4vw;
-	--slider-height: 2vw;
-	--slider-track-height: 0.05vw;
-	--slider-knob-size: 1.2vw;
-	--webkit-knob-position: calc(var(--slider-knob-size) / -2); /* webkit doesn't center the know automaticaly */
-	width: auto;
-	height: max-content;
+label {
+    margin-right: var(--size-s);
+    cursor: pointer;
+    display: inline-block;
 }
 
-.lttrface-ui_pane .ui_label {
-	text-transform: uppercase;
-	font-size: 1vw;
-	letter-spacing: 0.2rem;
-	color:  hsla(0, 0%, 100%, 0.8);
+input[type="radio"] {
+    display: none; /* Hide the radio buttons */
+}
+
+.model-selection {
+	grid-area: area-model-selection;
+}
+
+.epochs-selection {
+	grid-area: area-epochs-selection;
+}
+
+.samples-selection {
+	grid-area: area-samples-selection;
+}
+
+.font-selection {
+	grid-area: area-font-selection;
+	border: none;
+	margin: var(--size-s) 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.font-selection label {
+	height: var(--size-2xl);
+}
+
+.font-selection input[type="radio"] + span {
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	color: transparent;
 	display: block;
+	width: 100%;
+	height: 100%;
 }
+	.font-selection input[type="radio"][value="0000"] + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-01.svg);
+	}
 
-.lttrface-ui_pane .font_variant_label {
-	line-height: 2vw;
-	text-transform: uppercase;
-	margin: auto;
+	.font-selection input[type="radio"][value="0001"] + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-02.svg);
+	}
+	.font-selection input[type="radio"][value="0002"] + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-03.svg);
+	}
+	.font-selection input[type="radio"][value="0003"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-04.svg);
+	}
+	.font-selection input[type="radio"][value="0004"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-05.svg);
+	}
+	.font-selection input[type="radio"][value="0005"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-06.svg);
+	}
+	.font-selection input[type="radio"][value="0006"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-07.svg);
+	}
+	.font-selection input[type="radio"][value="0007"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-08.svg);
+	}
+	.font-selection input[type="radio"][value="0008"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-09.svg);
+	}
+	.font-selection input[type="radio"][value="0009"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-10.svg);
+	}
+	.font-selection input[type="radio"][value="0010"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-11.svg);
+	}
+	.font-selection input[type="radio"][value="0011"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-12.svg);
+	}
+	.font-selection input[type="radio"][value="0012"]  + span {
+		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-13.svg);
+	}
+
+
+.font-preview {
+	margin-top: var(--size-l);
+	font-size: var(--text-xl);
 	text-align: center;
+	font-family: sans-serif; /* Default font */
+	grid-area: area-font-preview;
 }
-
-.lttrface-ui_pane .font_variant {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 0.6vw;
-}
-
-.lttrface-ui_pane .font_variant input[type=radio] {
-	display: none;
-}
-
-.lttrface-ui_pane .font_variant label {
-	border-radius: 0.4vw;
-	background: none;
-	background-color: transparent;
-	padding: 0.6vw;
-}
-
-
-
-.lttrface-ui_pane .axis_slider {
-	margin-top: 2vw;
-}
-
-.lttrface-ui_pane .axis_slider label {
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	cursor: default;
-}
-
-		.lttrface-ui_pane .axis_slider label span {
-			line-height: 2vw;
-		}
-
-		.lttrface-ui_pane .axis_slider label .label_icon {
-			width: var(--icon-size);
-			height: var(--icon-size);
-		}
-
-		.lttrface-ui_pane .axis_slider input[type=range]{
-			width: 100%;
-			height: var(--slider-height);
-			opacity: 1;
-			background: none;
-			-webkit-appearance: none;
-			cursor: pointer;
-		}
-
-		.lttrface-ui_pane .axis_slider input[type=range]:hover {
-			opacity: 0.8;
-		}
-
-		.lttrface-ui_pane .axis_slider input[type=range]:focus {
-			opacity: 1;
-			outline: none;
-		}
-
-		.lttrface-ui_pane .axis_slider input[type=range]:focus:not(:hover) /* removes focus value after mouse-over is left */ {
-			opacity: 0.9;
-		}
-
-	.lttrface-ui_pane .axis_slider input[type=range]::-moz-range-track {
-		-webkit-appearance: none;
-		width: 100%;
-		height: var(--slider-track-height);
-		padding: 0.8vw auto;
-		cursor: pointer;
-		animate: 0.2s;
-		box-shadow: none;
-		background: white;
-		border-radius: 0.4vw;
-		border: none;
-	}
-
-	.lttrface-ui_pane .axis_slider input[type=range]:focus::-moz-range-track {
-		background: rgb(203, 203, 203);
-		height: var(--slider-track-height);
-	}  
-
-	.lttrface-ui_pane .axis_slider input[type=range]::-moz-range-thumb {
-		border: none;
-		box-shadow: none;
-		height: var(--slider-knob-size);
-		width: var(--slider-knob-size);
-		border-radius: 50%;
-		background: #FF0000;
-		cursor: pointer;
-	}			  
-
-	/* This must be written again for webkit. Otherwise doesn't work for some reason. */
-	.lttrface-ui_pane .axis_slider input[type=range]::-webkit-slider-runnable-track {
-		-webkit-appearance: none;
-		width: 100%;
-		height: var(--slider-track-height);
-		padding: 0.8vw auto;
-		cursor: pointer;
-		animate: 0.2s;
-		box-shadow: none;
-		background: white;
-		border-radius: 0.4vw;
-		border: none;
-	}
-
-	.lttrface-ui_pane .axis_slider input[type=range]:focus::-webkit-slider-runnable-track {
-		background: rgb(203, 203, 203);
-		height: var(--slider-track-height);
-	}
-
-	.lttrface-ui_pane .axis_slider input[type=range]::-webkit-slider-thumb {
-		border: none;
-		box-shadow: none;
-		height: var(--slider-knob-size);
-		width: var(--slider-knob-size);
-		border-radius: 50%;
-		background: #FF0000;
-		cursor: pointer;
-		margin-top: var(--webkit-knob-position); /* webkit doesn't center the know automaticaly */
-		-webkit-appearance: none;
-	}
