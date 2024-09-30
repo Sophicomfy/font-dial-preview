@@ -23,19 +23,18 @@ input[type="radio"] {
 .font-selection {
 	grid-area: area-font-selection;
 	border: none;
-	margin: var(--size-s) 0;
 	display: flex;
 	flex-direction: column;
 }
 
 .font-selection label {
-	height: var(--size-2xl);
+	height: var(--size-xl);
 }
 
 .font-selection input[type="radio"] + span {
-	background-position: 50%;
+	background-position: 0 0;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: contain;
 	color: transparent;
 	display: block;
 	width: 100%;
@@ -84,9 +83,6 @@ input[type="radio"] {
 
 
 .font-preview {
-	margin-top: var(--size-l);
 	font-size: var(--text-xl);
-	text-align: center;
-	font-family: sans-serif; /* Default font */
 	grid-area: area-font-preview;
 }

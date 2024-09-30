@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         const modelContainer = document.querySelector('.model-selection');
         modelContainer.innerHTML = ''; // Clear previous model options
 
+        const modelHeadline = document.createElement('p');
+        modelHeadline.className = 'model-headline';
+        modelHeadline.textContent = 'Model';
+        modelContainer.appendChild(modelHeadline); // Add headline for model
+
         models.forEach(model => {
             const modelOption = createRadioButtonOption('model', model, model === models[0]);
             modelContainer.appendChild(modelOption);
@@ -42,6 +47,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         const epochsContainer = document.querySelector('.epochs-selection');
         epochsContainer.innerHTML = ''; // Clear previous epoch options
 
+        const epochsHeadline = document.createElement('p');
+        epochsHeadline.className = 'epochs-headline';
+        epochsHeadline.textContent = 'Epochs';
+        epochsContainer.appendChild(epochsHeadline); // Add headline for epochs
+
         parameters.epochsRange.forEach(epoch => {
             const epochOption = createRadioButtonOption('epochs', epoch, epoch === parameters.epochsRange[0]);
             epochsContainer.appendChild(epochOption);
@@ -55,6 +65,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         const samplesContainer = document.querySelector('.samples-selection');
         samplesContainer.innerHTML = ''; // Clear previous samples options
 
+        const samplesHeadline = document.createElement('p');
+        samplesHeadline.className = 'samples-headline';
+        samplesHeadline.textContent = 'Samples';
+        samplesContainer.appendChild(samplesHeadline); // Add headline for samples
+
         parameters.samplesRange.forEach(sample => {
             const sampleOption = createRadioButtonOption('samples', sample, sample === selectedSample || sample === parameters.samplesRange[0]);
             samplesContainer.appendChild(sampleOption);
@@ -67,6 +82,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     function buildFontNumberOptions(parameters) {
         const fontContainer = document.querySelector('.font-selection');
         fontContainer.innerHTML = ''; // Clear previous font number options
+
+        const fontHeadline = document.createElement('p');
+        fontHeadline.className = 'font-headline';
+        fontHeadline.textContent = 'Font Number';
+        fontContainer.appendChild(fontHeadline); // Add headline for font numbers
 
         parameters.fontNumberRange.forEach(fontNumber => {
             const fontOption = createRadioButtonOption('font', fontNumber, fontNumber === selectedFontNumber || fontNumber === parameters.fontNumberRange[0]);
