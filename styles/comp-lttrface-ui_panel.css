@@ -1,11 +1,19 @@
-label {
-    margin-right: var(--size-s);
-    cursor: pointer;
-    display: inline-block;
+.font-dial-system input[type="radio"] {
+    display: none; /* Hide the radio buttons */
 }
 
-input[type="radio"] {
-    display: none; /* Hide the radio buttons */
+.font-dial-system label {
+	cursor: pointer;
+}
+
+.model-selection input[type="radio"]:checked + span::before, 
+.epochs-selection input[type="radio"]:checked + span::before,
+.samples-selection input[type="radio"]:checked + span::before
+ {
+	display: inline-block;
+	content: '→' ;
+	margin-left: calc(var(--size-s) * -1);
+	padding-right: var(--size-2xs);
 }
 
 .model-selection {
@@ -29,6 +37,7 @@ input[type="radio"] {
 
 .font-selection label {
 	height: var(--size-xl);
+	display: block;
 }
 
 .font-selection input[type="radio"] + span {
@@ -40,6 +49,12 @@ input[type="radio"] {
 	width: 100%;
 	height: 100%;
 }
+
+.font-selection input[type="radio"]:checked + span {
+	/* position: absolute; */
+	filter: invert(58%) sepia(100%) saturate(1000%) hue-rotate(326deg) brightness(100%) contrast(100%);
+}
+
 	.font-selection input[type="radio"][value="0000"] + span {
 		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-01.svg);
 	}
@@ -85,4 +100,10 @@ input[type="radio"] {
 .font-preview {
 	font-size: var(--text-xl);
 	grid-area: area-font-preview;
+}
+
+/* clear fucking webflow mess  */
+.w-embed::before, 
+.w-embed::after {
+	display: none;
 }
