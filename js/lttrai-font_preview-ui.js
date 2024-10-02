@@ -25,36 +25,25 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Function to build the model options UI
     function buildModelOptions(models) {
-        const modelContainer = document.querySelector('.model-selection');
-        modelContainer.innerHTML = ''; // Clear previous model options
-
-        const modelHeadline = document.createElement('p');
-        modelHeadline.className = 'model-headline';
-        modelHeadline.textContent = 'Model';
-        modelContainer.appendChild(modelHeadline); // Add headline for model
+        const fieldset = document.querySelector('.model-selection fieldset');
+        fieldset.innerHTML = ''; // Clear only the fieldset, keeping h3 and p intact
 
         models.forEach(model => {
             const modelOption = createRadioButtonOption('model', model, model === models[0]);
-            modelContainer.appendChild(modelOption);
+            fieldset.appendChild(modelOption);
         });
 
-        // Automatically trigger model change to initialize epochs, samples, and fonts for the first model
-        handleModelChange(models[0]);
+        handleModelChange(models[0]); // Automatically trigger model change for the first model
     }
 
     // Function to build the epoch options UI based on the selected model
     function buildEpochOptions(parameters) {
-        const epochsContainer = document.querySelector('.epochs-selection');
-        epochsContainer.innerHTML = ''; // Clear previous epoch options
-
-        const epochsHeadline = document.createElement('p');
-        epochsHeadline.className = 'epochs-headline';
-        epochsHeadline.textContent = 'Epochs';
-        epochsContainer.appendChild(epochsHeadline); // Add headline for epochs
+        const fieldset = document.querySelector('.epochs-selection fieldset');
+        fieldset.innerHTML = ''; // Clear only the fieldset, keeping h3 and p intact
 
         parameters.epochsRange.forEach(epoch => {
             const epochOption = createRadioButtonOption('epochs', epoch, epoch === parameters.epochsRange[0]);
-            epochsContainer.appendChild(epochOption);
+            fieldset.appendChild(epochOption);
         });
 
         selectedEpoch = parameters.epochsRange[0]; // Preselect the first epoch
@@ -62,38 +51,28 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Function to build the sample options UI based on the selected model
     function buildSampleOptions(parameters) {
-        const samplesContainer = document.querySelector('.samples-selection');
-        samplesContainer.innerHTML = ''; // Clear previous samples options
-
-        const samplesHeadline = document.createElement('p');
-        samplesHeadline.className = 'samples-headline';
-        samplesHeadline.textContent = 'Samples';
-        samplesContainer.appendChild(samplesHeadline); // Add headline for samples
+        const fieldset = document.querySelector('.samples-selection fieldset');
+        fieldset.innerHTML = ''; // Clear only the fieldset, keeping h3 and p intact
 
         parameters.samplesRange.forEach(sample => {
             const sampleOption = createRadioButtonOption('samples', sample, sample === selectedSample || sample === parameters.samplesRange[0]);
-            samplesContainer.appendChild(sampleOption);
+            fieldset.appendChild(sampleOption);
         });
 
-        selectedSample = selectedSample || parameters.samplesRange[0]; // Keep selected sample or preselect the first one
+        selectedSample = selectedSample || parameters.samplesRange[0]; // Preselect the first sample
     }
 
     // Function to build the font number options UI based on the selected model
     function buildFontNumberOptions(parameters) {
-        const fontContainer = document.querySelector('.font-selection');
-        fontContainer.innerHTML = ''; // Clear previous font number options
-
-        const fontHeadline = document.createElement('p');
-        fontHeadline.className = 'font-headline';
-        fontHeadline.textContent = 'Font Number';
-        fontContainer.appendChild(fontHeadline); // Add headline for font numbers
+        const fieldset = document.querySelector('.font-selection fieldset');
+        fieldset.innerHTML = ''; // Clear only the fieldset, keeping h3 and p intact
 
         parameters.fontNumberRange.forEach(fontNumber => {
             const fontOption = createRadioButtonOption('font', fontNumber, fontNumber === selectedFontNumber || fontNumber === parameters.fontNumberRange[0]);
-            fontContainer.appendChild(fontOption);
+            fieldset.appendChild(fontOption);
         });
 
-        selectedFontNumber = selectedFontNumber || parameters.fontNumberRange[0]; // Keep selected font number or preselect the first one
+        selectedFontNumber = selectedFontNumber || parameters.fontNumberRange[0]; // Preselect the first font number
     }
 
     // Event handler for when a model is changed
