@@ -1,3 +1,4 @@
+<style>
 .font-dial-system input[type="radio"] {
     display: none; /* Hide the radio buttons */
 }
@@ -6,14 +7,18 @@
 	cursor: pointer;
 }
 
+input[type="radio"]:checked + span {
+	color: var(--alpha-mid);
+}
+
 .model-selection input[type="radio"]:checked + span::before, 
 .epochs-selection input[type="radio"]:checked + span::before,
 .samples-selection input[type="radio"]:checked + span::before
  {
 	display: inline-block;
 	content: '→' ;
-	margin-left: calc(var(--size-s) * -1);
-	padding-right: var(--size-2xs);
+	margin-left: calc(var(--size-2xs) * -3);
+	padding-right: calc(var(--size-2xs) * 1);
 }
 
 .model-selection {
@@ -35,24 +40,27 @@
 	flex-direction: column;
 }
 
-.font-selection label {
-	height: var(--size-xl);
-	display: block;
-}
-
 .font-selection input[type="radio"] + span {
 	background-position: 0 0;
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: 46%;
 	color: transparent;
 	display: block;
-	width: 100%;
-	height: 100%;
+	line-height: var(--size-xl);
+	font-size: var(--text-xl);
+	filter: saturate(0%) brightness(1000%) contrast(100%);
 }
 
 .font-selection input[type="radio"]:checked + span {
-	/* position: absolute; */
-	filter: invert(58%) sepia(100%) saturate(1000%) hue-rotate(326deg) brightness(100%) contrast(100%);
+	filter: none;
+}
+
+.font-selection input[type="radio"]:checked + span::before {
+	display: inline-block;
+	content: '→';
+	line-height: var(--size-xl);
+	color: var(--alpha-mid);
+	margin-left: calc(var(--size-2xs) * -6);
 }
 
 	.font-selection input[type="radio"][value="0000"] + span {
@@ -107,3 +115,27 @@
 .w-embed::after {
 	display: none;
 }
+
+
+@media screen and (max-width: 479px) {
+
+	.font-dial-system label {
+		line-height: var(--size-xl);
+		font-size: var(--text-l);
+	}
+
+	.font-selection fieldset {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		column-gap: var(--size-xs);
+	}
+
+	.font-selection input[type="radio"] + span {
+		background-size: 100%;
+	}
+
+	.font-selection input[type="radio"]:checked + span::before {
+		display: none;
+	}
+}
+</style>
