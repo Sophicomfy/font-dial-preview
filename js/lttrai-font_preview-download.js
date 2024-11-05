@@ -1,18 +1,12 @@
-// Declare variables to store user selections
+// Define global variables to hold selected options
 let selectedModel = null;
 let selectedEpoch = null;
 let selectedSample = null;
 let selectedFontNumber = null;
 
-// Function to download the selected font as a .otf file
-function downloadOtfFont() {
-    if (!selectedModel || !selectedEpoch || !selectedSample || !selectedFontNumber) {
-        console.error('One or more font parameters are not defined.');
-        alert('Please select all font parameters before downloading.');
-        return;
-    }
-
-    const otfFileUrl = `https://assets.lttrcorp.com/2024-10-01-ai-font-tester/ai_testing_samples/${selectedModel}-${selectedEpoch}-${selectedSample}-${selectedFontNumber}.otf`;
+// Function to download the font as a .otf file
+function downloadOtfFont(model, epoch, sample, fontNumber) {
+    const otfFileUrl = `https://assets.lttrcorp.com/2024-10-01-ai-font-tester/ai_testing_samples/${model}-${epoch}-${sample}-${fontNumber}.otf`;
 
     fetch(otfFileUrl)
         .then(response => {
@@ -24,7 +18,7 @@ function downloadOtfFont() {
         .then(blob => {
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `${selectedModel}-${selectedEpoch}-${selectedSample}-${selectedFontNumber}.otf`;
+            link.download = `${model}-${epoch}-${sample}-${fontNumber}.otf`;
             link.click();
             URL.revokeObjectURL(link.href);
         })
@@ -34,21 +28,18 @@ function downloadOtfFont() {
         });
 }
 
-// Add event listener to the button with class `.button--lttrai--download-font`
-document.addEventListener('DOMContentLoaded', () => {
+// Event listener setup for the download button
+document.addEventListener('DOMContentLoaded', function() {
     const downloadButton = document.querySelector('.button--lttrai--download-font');
     
-    if (downloadButton) {
-        downloadButton.addEventListener('click', downloadOtfFont);
-    } else {
-        console.error('Download button not found in the DOM.');
-    }
-});
+    // Update the selected variables to the default state or preselected values
+    selectedModel = selectedModel || 'defaultModel';  // Replace 'defaultModel' with the actual default model name
+    selectedEpoch = selectedEpoch || 'defaultEpoch';  // Replace 'defaultEpoch' with the actual default epoch
+    selectedSample = selectedSample || 'defaultSample';  // Replace 'defaultSample' with the actual default sample
+    selectedFontNumber = selectedFontNumber || 'defaultFontNumber';  // Replace 'defaultFontNumber' with the actual default font number
 
-// Assume these values are updated elsewhere in the code, such as in the UI selection handlers.
-function updateFontSelection(model, epoch, sample, fontNumber) {
-    selectedModel = model;
-    selectedEpoch = epoch;
-    selectedSample = sample;
-    selectedFontNumber = fontNumber;
-}
+    // Attach event listener to the download button
+    downloadButton.addEventListener('click', function() {
+        downloadOtfFont(selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
+    });
+});
