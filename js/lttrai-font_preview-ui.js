@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Get available models from the font data
     const availableModels = window.getAvailableModels();
 
-    // Initialize UI with preselected values
-    let selectedModel = availableModels[0];
-    let selectedEpoch = null;
-    let selectedSample = null;
-    let selectedFontNumber = null;
+    // Initialize UI with preselected values and set them as global properties
+    window.selectedModel = availableModels[0];
+    window.selectedEpoch = null;
+    window.selectedSample = null;
+    window.selectedFontNumber = null;
 
     // Build the initial model options
     buildModelOptions(availableModels);
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             fieldset.appendChild(epochOption);
         });
 
-        selectedEpoch = parameters.epochsRange[0]; // Preselect the first epoch
+        window.selectedEpoch = parameters.epochsRange[0]; // Set the first epoch as the default
     }
 
     // Function to build the sample options UI based on the selected model
@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         fieldset.innerHTML = ''; // Clear only the fieldset, keeping h3 and p intact
 
         parameters.samplesRange.forEach(sample => {
-            const sampleOption = createRadioButtonOption('samples', sample, sample === selectedSample || sample === parameters.samplesRange[0]);
+            const sampleOption = createRadioButtonOption('samples', sample, sample === window.selectedSample || sample === parameters.samplesRange[0]);
             fieldset.appendChild(sampleOption);
         });
 
-        selectedSample = selectedSample || parameters.samplesRange[0]; // Preselect the first sample
+        window.selectedSample = window.selectedSample || parameters.samplesRange[0]; // Set the first sample as the default
     }
 
     // Function to build the font number options UI based on the selected model
@@ -69,11 +69,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         fieldset.innerHTML = ''; // Clear only the fieldset, keeping h3 and p intact
 
         parameters.fontNumberRange.forEach(fontNumber => {
-            const fontOption = createRadioButtonOption('font', fontNumber, fontNumber === selectedFontNumber || fontNumber === parameters.fontNumberRange[0]);
+            const fontOption = createRadioButtonOption('font', fontNumber, fontNumber === window.selectedFontNumber || fontNumber === parameters.fontNumberRange[0]);
             fieldset.appendChild(fontOption);
         });
 
-        selectedFontNumber = selectedFontNumber || parameters.fontNumberRange[0]; // Preselect the first font number
+        window.selectedFontNumber = window.selectedFontNumber || parameters.fontNumberRange[0]; // Set the first font number as the default
     }
 
     // Event handler for when a model is changed
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         buildFontNumberOptions(parameters);
 
         // Trigger the preview update via the display script
-        window.triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); 
+        window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
     }
 
     // Helper function to create radio button UI components styled as CSS classes and content values
@@ -106,23 +106,23 @@ document.addEventListener('DOMContentLoaded', async function() {
         input.addEventListener('change', function(event) {
             switch (name) {
                 case 'model':
-                    selectedModel = value;
+                    window.selectedModel = value;
                     handleModelChange(value);
                     break;
                 case 'epochs':
-                    selectedEpoch = value;
-                    console.log('Epoch changed to:', selectedEpoch);
-                    window.triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); 
+                    window.selectedEpoch = value;
+                    console.log('Epoch changed to:', window.selectedEpoch);
+                    window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
                     break;
                 case 'samples':
-                    selectedSample = value;
-                    console.log('Samples changed to:', selectedSample);
-                    window.triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); 
+                    window.selectedSample = value;
+                    console.log('Samples changed to:', window.selectedSample);
+                    window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
                     break;
                 case 'font':
-                    selectedFontNumber = value;
-                    console.log('Font No changed to:', selectedFontNumber);
-                    window.triggerPreviewUpdate(selectedModel, selectedEpoch, selectedSample, selectedFontNumber); 
+                    window.selectedFontNumber = value;
+                    console.log('Font No changed to:', window.selectedFontNumber);
+                    window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
                     break;
             }
         });
