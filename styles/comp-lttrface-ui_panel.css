@@ -1,25 +1,109 @@
-<style>
-.font-dial-system input[type="radio"] {
-    display: none; /* Hide the radio buttons */
+.slide--grid--font-dial-system fieldset label input[type="radio"] {
+	display: none;
 }
 
-.font-dial-system label {
+.slide--grid--font-dial-system label {
 	cursor: pointer;
 }
 
-input[type="radio"]:checked + span {
-	color: var(--alpha-mid);
+.font-selection {
+	grid-area: area-font-selection;
+	border: none;
+	display: flex;
+	flex-direction: column;
 }
 
-.model-selection input[type="radio"]:checked + span::before, 
-.epochs-selection input[type="radio"]:checked + span::before,
-.samples-selection input[type="radio"]:checked + span::before
- {
-	display: inline-block;
-	content: '→' ;
-	margin-left: calc(var(--size-2xs) * -3);
-	padding-right: calc(var(--size-2xs) * 1);
+.font-selection fieldset {
+	display: flex;
+	align-items: stretch;
+	flex-wrap: wrap;
+	gap: var(--size-2xs);
 }
+
+.font-selection fieldset label {
+	height: 3.3vw;
+	width: 6.5vw;
+}
+
+.font-selection input[type="radio"]+span {
+	display: block;
+	background-position: 0 0;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: 98%;
+	color: transparent;
+	display: block;
+	line-height: var(--size-xl);
+	font-size: var(--text-xl);
+	filter: saturate(0%) brightness(1000%) contrast(100%);
+}
+
+.font-selection input[type="radio"]:checked+span {
+	filter: none;
+}
+
+.font-selection input[type="radio"]:checked+span::after {
+	display: block;
+	position: relative;
+	content: '↑';
+	color: var(--alpha-mid);
+	top: -1vw;
+	left: 2vw;
+}
+
+.font-selection input[type="radio"][value="0000"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-01.svg);
+}
+
+.font-selection input[type="radio"][value="0001"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-02.svg);
+}
+
+.font-selection input[type="radio"][value="0002"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-03.svg);
+}
+
+.font-selection input[type="radio"][value="0003"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-04.svg);
+}
+
+.font-selection input[type="radio"][value="0004"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-05.svg);
+}
+
+.font-selection input[type="radio"][value="0005"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-06.svg);
+}
+
+.font-selection input[type="radio"][value="0006"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-07.svg);
+}
+
+.font-selection input[type="radio"][value="0007"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-08.svg);
+}
+
+.font-selection input[type="radio"][value="0008"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-09.svg);
+}
+
+.font-selection input[type="radio"][value="0009"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-10.svg);
+}
+
+.font-selection input[type="radio"][value="0010"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-11.svg);
+}
+
+.font-selection input[type="radio"][value="0011"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-12.svg);
+}
+
+.font-selection input[type="radio"][value="0012"]+span {
+	background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-13.svg);
+}
+
 
 .model-selection {
 	grid-area: area-model-selection;
@@ -33,85 +117,28 @@ input[type="radio"]:checked + span {
 	grid-area: area-samples-selection;
 }
 
-.font-selection {
-	grid-area: area-font-selection;
-	border: none;
-	display: flex;
-	flex-direction: column;
-}
-
-.font-selection input[type="radio"] + span {
-	background-position: 0 0;
-	background-repeat: no-repeat;
-	background-size: 46%;
-	color: transparent;
-	display: block;
-	line-height: var(--size-xl);
-	font-size: var(--text-xl);
-	filter: saturate(0%) brightness(1000%) contrast(100%);
-}
-
-.font-selection input[type="radio"]:checked + span {
-	filter: none;
-}
-
-.font-selection input[type="radio"]:checked + span::before {
-	display: inline-block;
-	content: '→';
-	line-height: var(--size-xl);
-	color: var(--alpha-mid);
-	margin-left: calc(var(--size-2xs) * -6);
-}
-
-	.font-selection input[type="radio"][value="0000"] + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-01.svg);
-	}
-
-	.font-selection input[type="radio"][value="0001"] + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-02.svg);
-	}
-	.font-selection input[type="radio"][value="0002"] + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-03.svg);
-	}
-	.font-selection input[type="radio"][value="0003"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-04.svg);
-	}
-	.font-selection input[type="radio"][value="0004"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-05.svg);
-	}
-	.font-selection input[type="radio"][value="0005"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-06.svg);
-	}
-	.font-selection input[type="radio"][value="0006"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-07.svg);
-	}
-	.font-selection input[type="radio"][value="0007"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-08.svg);
-	}
-	.font-selection input[type="radio"][value="0008"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-09.svg);
-	}
-	.font-selection input[type="radio"][value="0009"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-10.svg);
-	}
-	.font-selection input[type="radio"][value="0010"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-11.svg);
-	}
-	.font-selection input[type="radio"][value="0011"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-12.svg);
-	}
-	.font-selection input[type="radio"][value="0012"]  + span {
-		background-image: url(https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/ahoy-13.svg);
-	}
-
-
 .font-preview {
 	font-size: var(--text-xl);
 	grid-area: area-font-preview;
 }
 
+.model-selection input[type="radio"]:checked+span,
+.epochs-selection input[type="radio"]:checked+span,
+.samples-selection input[type="radio"]:checked+span {
+	color: var(--alpha-mid);
+}
+
+.model-selection input[type="radio"]:checked+span::before,
+.epochs-selection input[type="radio"]:checked+span::before,
+.samples-selection input[type="radio"]:checked+span::before {
+	display: inline-block;
+	content: '→';
+	margin-left: calc(var(--size-2xs) * -3);
+	padding-right: calc(var(--size-2xs) * 1);
+}
+
 /* clear fucking webflow mess  */
-.w-embed::before, 
+.w-embed::before,
 .w-embed::after {
 	display: none;
 }
@@ -130,12 +157,11 @@ input[type="radio"]:checked + span {
 		column-gap: var(--size-xs);
 	}
 
-	.font-selection input[type="radio"] + span {
+	.font-selection input[type="radio"]+span {
 		background-size: 100%;
 	}
 
-	.font-selection input[type="radio"]:checked + span::before {
+	.font-selection input[type="radio"]:checked+span::before {
 		display: none;
 	}
 }
-</style>
