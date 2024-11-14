@@ -1,4 +1,3 @@
-// ensure <script defer></script>
 document.addEventListener('DOMContentLoaded', async function() {
     // Wait for the data to be fetched before proceeding with the UI build
     let fontData;
