@@ -2,7 +2,7 @@ import os
 import json
 import re
 
-FONT_DIRECTORY = './web/ai_testing_samples'
+FONT_DIRECTORY = 'LTTR_Web_Assets/web/2024-10-01-ai-font-tester/ai_testing_samples'
 FONT_PATTERN = re.compile(r'^(?P<fontName>[\w\-]+)-(?P<modelName>[\w\-]+)-(?P<epochs>\d+)-(?P<samples>\d+)-(?P<fontNumber>\d+)\.woff2$')
 JSON_OUTPUT_PATH = os.path.join(FONT_DIRECTORY, 'fonts_data.json')
 

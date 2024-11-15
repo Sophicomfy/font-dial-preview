@@ -2,8 +2,15 @@
 	display: none;
 }
 
-.slide--grid--font-dial-system label {
+.slide--grid--font-dial-system > div > label {
+	margin-bottom: var(--size-3xs);
+}
+
+.slide--grid--font-dial-system fieldset label {
 	cursor: pointer;
+	font-family: var(--lttr-brand);
+	font-size: var(--text-xs);
+	line-height: var(--size-s);
 }
 
 .font-selection {
@@ -15,14 +22,15 @@
 
 .font-selection fieldset {
 	display: flex;
-	align-items: stretch;
+	align-items: center;
 	flex-wrap: wrap;
-	gap: var(--size-2xs);
+	gap: var(--size-s);
+	height: 100%;
 }
 
 .font-selection fieldset label {
-	height: 3.3vw;
-	width: 6.5vw;
+	height: 2.9vw;
+	width: 5.4vw;
 }
 
 .font-selection input[type="radio"]+span {
@@ -31,7 +39,7 @@
 	height: 100%;
 	width: 100%;
 	background-repeat: no-repeat;
-	background-size: 98%;
+	background-size: 94%;
 	color: transparent;
 	display: block;
 	line-height: var(--size-xl);
@@ -48,8 +56,8 @@
 	position: relative;
 	content: '↑';
 	color: var(--alpha-mid);
-	top: -1vw;
-	left: 2vw;
+	top: -2.2vw;
+	left: 1.45vw;
 }
 
 .font-selection input[type="radio"][value="0000"]+span {
@@ -118,8 +126,12 @@
 }
 
 .font-preview {
-	font-size: var(--text-xl);
 	grid-area: area-font-preview;
+}
+
+.font-preview p {
+	font-size: 15vw;
+	line-height: 16vw;
 }
 
 .model-selection input[type="radio"]:checked+span,

@@ -1,5 +1,5 @@
 // Base URL for accessing the fonts on the server
-const assetsBaseUrl = 'https://assets.lttrcorp.com/2024-10-01-ai-font-tester/';
+const assetsBaseUrl = 'https://assets.lttrcorp.com/';
 
 // Function to download the font and apply it to the preview element
 function downloadAndDisplayFont(fontUrl) {

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to initiate font download
     function downloadFont(model, epoch, sample, fontNumber) {
         // Construct the URL for the default font file, assuming .woff format for now
-        const fontUrl = `https://assets.lttrcorp.com/2024-10-01-ai-font-tester/ai_testing_samples/${model}-${epoch}-${sample}-${fontNumber}.woff2`;
+        const fontUrl = `https://assets.lttrcorp.com/${model}-${epoch}-${sample}-${fontNumber}.woff2`;
 
         fetch(fontUrl)
             .then(response => {
