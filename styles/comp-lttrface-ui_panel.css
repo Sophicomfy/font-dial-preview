@@ -13,19 +13,28 @@
 	line-height: var(--size-s);
 }
 
-.font-selection {
-	grid-area: area-font-selection;
+.slide--grid--font-dial-system > div select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 	border: none;
-	display: flex;
-	flex-direction: column;
+    background: transparent; 
+    cursor: pointer;
 }
 
-.font-selection fieldset {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: var(--size-s);
-	height: 100%;
+.slide--grid--font-dial-system > div select:hover {
+	color: var(--alpha-mid);
+}
+
+.slide--grid--font-dial-system > div select::after {
+	content: '▼';
+	position: absolute;
+	display: block;
+	pointer-events: none; /* Arrow shouldn't block interaction */
+}
+
+.font-selection {
+	grid-area: area-font-selection;
 }
 
 .font-selection fieldset label {
@@ -130,8 +139,8 @@
 }
 
 .font-preview p {
-	font-size: 15vw;
-	line-height: 16vw;
+	font-size: 12vw;
+	line-height: 13vw;
 }
 
 .model-selection input[type="radio"]:checked+span,

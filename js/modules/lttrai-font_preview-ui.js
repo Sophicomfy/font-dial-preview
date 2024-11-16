@@ -93,38 +93,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Helper function to create radio button UI components styled as CSS classes and content values
-    function createRadioButtonOption(name, value, isChecked) {
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        const span = document.createElement('span');
-
-        input.type = 'radio';
-        input.name = name;
-        input.value = value;
-        input.checked = isChecked;
-        input.addEventListener('change', function(event) {
-            switch (name) {
-                case 'model':
-                    window.selectedModel = value;
-                    handleModelChange(value);
-                    break;
-                case 'epochs':
-                    window.selectedEpoch = value;
-                    console.log('Epoch changed to:', window.selectedEpoch);
-                    window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
-                    break;
-                case 'samples':
-                    window.selectedSample = value;
-                    console.log('Samples changed to:', window.selectedSample);
-                    window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
-                    break;
-                case 'font':
-                    window.selectedFontNumber = value;
-                    console.log('Font No changed to:', window.selectedFontNumber);
-                    window.triggerPreviewUpdate(window.selectedModel, window.selectedEpoch, window.selectedSample, window.selectedFontNumber); 
-                    break;
-            }
-        });
+    function createDropdownOption(value, isSelected) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value; // Displayed text
+        option.selected = isSelected; // Mark as selected if applicable
+        return option;
+    }    
 
         // Set the span's content and CSS class based on the option value
         span.classList.add(`${name}-option`);
