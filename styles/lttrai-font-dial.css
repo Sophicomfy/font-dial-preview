@@ -1,45 +1,74 @@
-.slide--grid--font-dial-system fieldset label input[type="radio"] {
+.slide--grid--font-dial-system h1 {
+	grid-area: area-logo;
+}
+
+.slide--grid--font-dial-system .button--lttrai--download-font {
+	grid-area: area-download-font;
+	justify-self: end;
+}
+
+/* .slide--grid--font-dial-system .button--lttrai--download-font:after {
 	display: none;
-}
+} */
 
-.slide--grid--font-dial-system > div > label {
-	margin-bottom: var(--size-3xs);
-}
-
-.slide--grid--font-dial-system fieldset label {
-	cursor: pointer;
-	font-family: var(--lttr-brand);
-	font-size: var(--text-xs);
+.slide--grid--font-dial-system>div>label {
+	font-size: var(--text-2xs);
 	line-height: var(--size-s);
 }
 
-.slide--grid--font-dial-system > div select {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-	border: none;
-    background: transparent; 
-    cursor: pointer;
+.slide--grid--font-dial-system .selected-item {
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	font-size: var(--text-xs);
+	/*! font-weight: bold; */
+	line-height: var(--size-s);
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 0.07vw solid var(--beta-mid);
 }
 
-.slide--grid--font-dial-system > div select:hover {
+.slide--grid--font-dial-system .selected-item:after {
+	content: "▾";
+}
+
+.slide--grid--font-dial-system .selected-item:hover {
+	color: var(--alpha-mid);
+	border-bottom: 0.07vw solid var(--alpha-mid);
+}
+
+.slide--grid--font-dial-system .dropdown-options {
+	background: var(--beta-dark);
+	position: absolute;
+	margin-top: calc(0 * var(--size-2xs));
+	margin-left: calc(-2 * var(--size-2xs));
+	padding: var(--size-2xs);
+}
+
+.slide--grid--font-dial-system .dropdown-options .dropdown-option {
+	padding: 0 var(--size-2xs);
+	cursor: pointer;
+	display: grid;
+	font-size: var(--text-2xs);
+}
+
+.slide--grid--font-dial-system .dropdown-options .dropdown-option:hover {
 	color: var(--alpha-mid);
 }
 
-.slide--grid--font-dial-system > div select::after {
-	content: '▼';
+.slide--grid--font-dial-system .dropdown-options .dropdown-option.selected {
+
+	color: var(--alpha-mid);
+}
+
+.slide--grid--font-dial-system .dropdown-options .dropdown-option.selected::before {
+	content: '→';
 	position: absolute;
-	display: block;
-	pointer-events: none; /* Arrow shouldn't block interaction */
+	left: calc(-1 * var(--size-2xs));
 }
 
 .font-selection {
 	grid-area: area-font-selection;
-}
-
-.font-selection fieldset label {
-	height: 2.9vw;
-	width: 5.4vw;
 }
 
 .font-selection input[type="radio"]+span {
@@ -139,8 +168,10 @@
 }
 
 .font-preview p {
-	font-size: 12vw;
+	font-size: 11vw;
 	line-height: 13vw;
+	letter-spacing: -0.7rem;
+	word-spacing: 1rem;
 }
 
 .model-selection input[type="radio"]:checked+span,
@@ -163,7 +194,6 @@
 .w-embed::after {
 	display: none;
 }
-
 
 @media screen and (max-width: 479px) {
 

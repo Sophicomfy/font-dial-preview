@@ -15,6 +15,15 @@ const assetsBaseUrl = 'https://assets.lttrcorp.com/';
 
         console.log('Parameters for Selected Model:', parameters);
 
+        // Populate dropdowns using the ui-make-html-elements.js module
+        UIMakeHtmlElements.populateDropdown('.model-selection .dropdown', availableModels, selectedModel);
+        UIMakeHtmlElements.populateDropdown('.epochs-selection .dropdown', parameters.epochsRange, parameters.epochsRange[0]);
+        UIMakeHtmlElements.populateDropdown('.samples-selection .dropdown', parameters.samplesRange, parameters.samplesRange[0]);
+        UIMakeHtmlElements.populateDropdown('.font-selection .dropdown', parameters.fontNumberRange, parameters.fontNumberRange[0]);
+
+        // Initialize dropdown interactions
+        UIDropdown.initializeDropdowns();
+
         // Example: Find a specific font
         const fontUrl = FontFinder.findFont(fontData, selectedModel, parameters.epochsRange[0], parameters.samplesRange[0], parameters.fontNumberRange[0]);
         if (fontUrl) {
