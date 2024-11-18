@@ -1,15 +1,16 @@
-// download-font.js
+// `download-font.js`
+
 const DownloadFont = {
-    setDownloadFontLink(otfUrl, downloadButton) {
+    async setDownloadFontLink(otfUrl, downloadButton) {
         if (!otfUrl || !downloadButton) {
             throw new Error('Invalid otfUrl or downloadButton provided.');
         }
 
         try {
-            // Set the href attribute to the otfUrl
-            downloadButton.href = otfUrl;
+            // Example: Validate the URL by making a HEAD request to ensure it is accessible
+            await this.validateUrl(otfUrl);
 
-            // Set the download attribute to suggest a filename
+            downloadButton.href = otfUrl;
             const fileName = this.extractFileNameFromUrl(otfUrl);
             downloadButton.download = fileName;
 
@@ -19,8 +20,28 @@ const DownloadFont = {
         }
     },
 
+    async validateUrl(url) {
+        try {
+            const response = await fetch(url, { method: 'HEAD' });
+            if (!response.ok) {
+                throw new Error(`URL validation failed with status ${response.status}`);
+            }
+        } catch (error) {
+            throw new Error(`Unable to validate URL: ${url}. ${error.message}`);
+        }
+    },
+
     extractFileNameFromUrl(url) {
         const parts = url.split('/');
         return parts[parts.length - 1]; // Return the last part of the URL (file name)
+    },
+
+    async setFontDownloadButton(otfUrl) {
+        const downloadButton = document.querySelector('.button--lttrai--download-font');
+        if (downloadButton) {
+            await this.setDownloadFontLink(otfUrl, downloadButton);
+        } else {
+            console.error('Download button not found.');
+        }
     }
 };
