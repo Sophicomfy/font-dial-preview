@@ -1,6 +1,26 @@
-// `ui-make-html-elements.js`
-
 const UIMakeHtmlElements = {
+    initializeDropdowns(fontData, defaultPresets) {
+        this.populateAllDropdowns(
+            fontData,
+            defaultPresets.model,
+            defaultPresets.epochs,
+            defaultPresets.samples,
+            defaultPresets.fontNumber
+        );
+    },
+
+    populateAllDropdowns(fontData, selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
+        const availableModels = DataProcessing.getAvailableModels(fontData);
+        const availableEpochs = DataProcessing.getAvailableEpochs(fontData, selectedModel);
+        const availableSamples = DataProcessing.getAvailableSamples(fontData, selectedModel);
+        const availableFontNumbers = DataProcessing.getAvailableFontNumbers(fontData, selectedModel);
+
+        this.populateDropdown('.model-selection .dropdown', availableModels, selectedModel);
+        this.populateDropdown('.epochs-selection .dropdown', availableEpochs, selectedEpoch);
+        this.populateDropdown('.samples-selection .dropdown', availableSamples, selectedSample);
+        this.populateDropdown('.font-selection .dropdown', availableFontNumbers, selectedFontNumber);
+    },
+
     populateDropdown(containerSelector, options, selectedValue) {
         const container = document.querySelector(containerSelector);
         if (!container) {
@@ -33,21 +53,34 @@ const UIMakeHtmlElements = {
 
             dropdownOptions.appendChild(optionElement);
         });
-
-        console.log(`Dropdown populated for selector: ${containerSelector} with selected value: ${selectedValue}`);
     },
 
-    populateAllDropdowns(fontData, selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
-        const availableModels = DataProcessing.getAvailableModels(fontData);
-        const availableEpochs = DataProcessing.getAvailableEpochs(fontData, selectedModel);
-        const availableSamples = DataProcessing.getAvailableSamples(fontData, selectedModel);
-        const availableFontNumbers = DataProcessing.getAvailableFontNumbers(fontData, selectedModel);
+    handleNewSelection(fontData, selectedPresets, newSelectedOption, dropdownType) {
+        // Update the relevant preset value based on dropdownType
+        switch (dropdownType) {
+            case 'model':
+                selectedPresets.model = newSelectedOption;
+                break;
+            case 'epochs':
+                selectedPresets.epochs = parseInt(newSelectedOption, 10);
+                break;
+            case 'samples':
+                selectedPresets.samples = parseInt(newSelectedOption, 10);
+                break;
+            case 'fontNumber':
+                selectedPresets.fontNumber = newSelectedOption;
+                break;
+            default:
+                console.error('Unknown dropdown type:', dropdownType);
+        }
 
-        this.populateDropdown('.model-selection .dropdown', availableModels, selectedModel);
-        this.populateDropdown('.epochs-selection .dropdown', availableEpochs, selectedEpoch);
-        this.populateDropdown('.samples-selection .dropdown', availableSamples, selectedSample);
-        this.populateDropdown('.font-selection .dropdown', availableFontNumbers, selectedFontNumber);
-
-        console.log('All dropdowns populated with data from DataProcessing module.');
+        // Rebuild dropdowns based on the updated presets
+        this.populateAllDropdowns(
+            fontData,
+            selectedPresets.model,
+            selectedPresets.epochs,
+            selectedPresets.samples,
+            selectedPresets.fontNumber
+        );
     }
 };

@@ -7,26 +7,41 @@
         // Fetch font data from the server
         const fontData = await Server.fetchFontData(jsonUrl);
 
-        // Set default presets
-        const selectedModel = defaultPresets.model;
-        const selectedEpoch = defaultPresets.epochs;
-        const selectedSample = defaultPresets.samples;
-        const selectedFontNumber = defaultPresets.fontNumber;
+        // Initialize dropdowns with default presets
+        const selectedPresets = { ...defaultPresets };
+        UIMakeHtmlElements.initializeDropdowns(fontData, selectedPresets);
 
-        // Populate all dropdowns using ui-make-html-elements.js
-        UIMakeHtmlElements.populateAllDropdowns(
-            fontData,
-            selectedModel,
-            selectedEpoch,
-            selectedSample,
-            selectedFontNumber
-        );
+        // Attach dropdown listeners with re-attachment after updates
+        const dropdownSelectors = ['.model-selection', '.epochs-selection', '.samples-selection', '.font-selection'];
 
-        // Initialize dropdown interactions using ui-interactions.js
-        UIDropdown.initializeDropdowns();
+        dropdownSelectors.forEach(selector => {
+            UIInteractions.attachDropdownListeners(selector, fontData, selectedPresets, (newSelectedOption, dropdownType) => {
+                // Update the UI based on the new selection
+                UIMakeHtmlElements.handleNewSelection(fontData, selectedPresets, newSelectedOption, dropdownType);
 
+                // Re-apply font preview and download setup after UI update
+                setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl);
+            });
+        });
+
+        // Initial preview and download setup
+        setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl);
+
+    } catch (error) {
+        console.error('Error initializing the app:', error);
+    }
+})();
+
+async function setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl) {
+    try {
         // Handle font selection and preview
-        const fontUrl = FontFinder.findFont(fontData, selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
+        const fontUrl = FontFinder.findFont(
+            fontData,
+            selectedPresets.model,
+            selectedPresets.epochs,
+            selectedPresets.samples,
+            selectedPresets.fontNumber
+        );
 
         // Generate full font URLs
         const fontUrls = GetFont.getFontUrls(fontUrl, assetsBaseUrl);
@@ -36,7 +51,8 @@
 
         // Set the download link for the font using the otf URL
         await DownloadFont.setFontDownloadButton(fontUrls.otf);
+
     } catch (error) {
-        console.error('Error initializing the app:', error);
+        console.error('Error setting up font preview and download:', error);
     }
-})();
+}
