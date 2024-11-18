@@ -1,4 +1,5 @@
-// ui-make-html-elements.js namespace
+// `ui-make-html-elements.js`
+
 const UIMakeHtmlElements = {
     populateDropdown(containerSelector, options, selectedValue) {
         const container = document.querySelector(containerSelector);
@@ -34,5 +35,19 @@ const UIMakeHtmlElements = {
         });
 
         console.log(`Dropdown populated for selector: ${containerSelector} with selected value: ${selectedValue}`);
+    },
+
+    populateAllDropdowns(fontData, selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
+        const availableModels = DataProcessing.getAvailableModels(fontData);
+        const availableEpochs = DataProcessing.getAvailableEpochs(fontData, selectedModel);
+        const availableSamples = DataProcessing.getAvailableSamples(fontData, selectedModel);
+        const availableFontNumbers = DataProcessing.getAvailableFontNumbers(fontData, selectedModel);
+
+        this.populateDropdown('.model-selection .dropdown', availableModels, selectedModel);
+        this.populateDropdown('.epochs-selection .dropdown', availableEpochs, selectedEpoch);
+        this.populateDropdown('.samples-selection .dropdown', availableSamples, selectedSample);
+        this.populateDropdown('.font-selection .dropdown', availableFontNumbers, selectedFontNumber);
+
+        console.log('All dropdowns populated with data from DataProcessing module.');
     }
 };

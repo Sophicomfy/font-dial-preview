@@ -8,43 +8,27 @@
         const fontData = await Server.fetchFontData(jsonUrl);
         console.log('Font Data Fetched:', fontData);
 
-        // Process all models to extract available data
-        const allModelsData = DataProcessing.processAllModels(fontData);
-        console.log('All Models Data:', allModelsData);
+        // Set default presets
+        const selectedModel = defaultPresets.model;
+        const selectedEpoch = defaultPresets.epochs;
+        const selectedSample = defaultPresets.samples;
+        const selectedFontNumber = defaultPresets.fontNumber;
 
-        // Use the default presets if they exist in the data
-        const selectedModel = defaultPresets.model in allModelsData ? defaultPresets.model : Object.keys(allModelsData)[0];
-        const modelData = allModelsData[selectedModel];
-        
-        if (!modelData) {
-            console.error('No valid data available for the default or selected model.');
-            return;
-        }
+        console.log('Default Presets:', { selectedModel, selectedEpoch, selectedSample, selectedFontNumber });
 
-        const selectedEpoch = modelData.availableEpochs.includes(defaultPresets.epochs) 
-            ? defaultPresets.epochs 
-            : modelData.availableEpochs[0];
+        // Populate all dropdowns using ui-make-html-elements.js
+        UIMakeHtmlElements.populateAllDropdowns(
+            fontData,
+            selectedModel,
+            selectedEpoch,
+            selectedSample,
+            selectedFontNumber
+        );
 
-        const selectedSample = modelData.availableSamples.includes(defaultPresets.samples) 
-            ? defaultPresets.samples 
-            : modelData.availableSamples[0];
-
-        const selectedFontNumber = modelData.availableFontNumbers.includes(defaultPresets.fontNumber) 
-            ? defaultPresets.fontNumber 
-            : modelData.availableFontNumbers[0];
-
-        console.log('Selected Presets:', { selectedModel, selectedEpoch, selectedSample, selectedFontNumber });
-
-        // Populate dropdowns using the extracted data
-        UIMakeHtmlElements.populateDropdown('.model-selection .dropdown', Object.keys(allModelsData), selectedModel);
-        UIMakeHtmlElements.populateDropdown('.epochs-selection .dropdown', modelData.availableEpochs, selectedEpoch);
-        UIMakeHtmlElements.populateDropdown('.samples-selection .dropdown', modelData.availableSamples, selectedSample);
-        UIMakeHtmlElements.populateDropdown('.font-selection .dropdown', modelData.availableFontNumbers, selectedFontNumber);
-
-        // Initialize dropdown interactions
+        // Initialize dropdown interactions using ui-interactions.js
         UIDropdown.initializeDropdowns();
 
-        // Find and display a font based on the selected parameters
+        // Handle font selection and preview
         const fontUrl = FontFinder.findFont(fontData, selectedModel, selectedEpoch, selectedSample, selectedFontNumber);
 
         if (fontUrl) {
