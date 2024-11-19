@@ -8,9 +8,6 @@
         // Initial preview and download setup
         setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl);
 
-    } catch (error) {
-        console.error('Error initializing the app:', error);
-    }
 })();
 
 async function setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl) {
