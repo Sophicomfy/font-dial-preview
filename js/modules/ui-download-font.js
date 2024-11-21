@@ -1,4 +1,4 @@
-// `download-font.js`
+// ui-download-font.js
 
 const DownloadFont = {
     async setDownloadFontLink(otfUrl, downloadButton) {

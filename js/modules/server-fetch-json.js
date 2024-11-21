@@ -1,4 +1,4 @@
-// server.js
+// server-fetch-json.js
 const Server = {
     async fetchFontData(url) {
         if (!url) {
@@ -7,7 +7,7 @@ const Server = {
         try {
             const response = await fetch(url);
             const fontData = await response.json();
-            console.log('Font data fetched:', fontData);
+            console.log('server-fetch-json fontData:', fontData);
             return fontData;
         } catch (error) {
             console.error('Error fetching font data:', error);

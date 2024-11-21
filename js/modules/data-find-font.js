@@ -1,4 +1,5 @@
-// font-finder.js
+// data-find-font.js
+
 const FontFinder = {
     findFont(fontData, selectedModel, selectedEpoch, selectedSample, selectedFontNumber) {
         if (!fontData || !fontData.model[selectedModel]) {

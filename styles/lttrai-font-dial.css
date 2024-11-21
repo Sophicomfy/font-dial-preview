@@ -1,3 +1,4 @@
+
 .slide--grid--font-dial-system h1 {
 	grid-area: area-logo;
 }
@@ -56,12 +57,11 @@
 	color: var(--alpha-mid);
 }
 
-.slide--grid--font-dial-system .dropdown-options .dropdown-option.selected {
-
+.slide--grid--font-dial-system .dropdown-options .dropdown-option[attr="selected"] {
 	color: var(--alpha-mid);
 }
 
-.slide--grid--font-dial-system .dropdown-options .dropdown-option.selected::before {
+.slide--grid--font-dial-system .dropdown-options .dropdown-option[attr="selected"]::before {
 	content: '→';
 	position: absolute;
 	left: calc(-1 * var(--size-2xs));

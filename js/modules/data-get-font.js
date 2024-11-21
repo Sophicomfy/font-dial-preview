@@ -1,3 +1,5 @@
+// data-get-font.js
+
 const GetFont = {
     getFontUrls(fontUrl, baseUrl) {
         if (!fontUrl || !baseUrl) {

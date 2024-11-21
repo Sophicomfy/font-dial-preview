@@ -1,3 +1,5 @@
+// main.js
+
 (async function initializeApp() {
     try {
         const { assetsBaseUrl, jsonUrl, defaultPresets } = Presets;
@@ -5,28 +7,30 @@
         // Fetch font data from the server
         const fontData = await Server.fetchFontData(jsonUrl);
 
-        // Initial preview and download setup
-        setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl);
+        // Process all models data
+        const allModelsData = DataProcessing.processAllModels(fontData);
+        console.log('main allModelsData:', allModelsData);
 
+        // Initialize and manage UI state
+        const uiManager = new UIManageState(fontData, defaultPresets);
+
+        // Initialize dropdown population
+        const dropdownPopulator = new UIDropdownPopulation(uiManager.uiState);
+
+        // Populate dropdowns with the initial state
+        dropdownPopulator.populateDropdowns();
+
+        // Listen for `optionSelected` events
+        document.addEventListener('optionSelected', (event) => {
+            const { newSelectedOption, newSelectedOptionValue } = event.detail;
+            console.log(`Option selected: ${newSelectedOption} = ${newSelectedOptionValue}`);
+
+            // Update UI state and repopulate dropdowns
+            uiManager.updateUIState(newSelectedOption, newSelectedOptionValue);
+            dropdownPopulator.populateDropdowns();
+        });
+
+    } catch (error) {
+        console.error('Error initializing the app:', error);
+    }
 })();
-
-async function setupFontPreviewAndDownload(fontData, selectedPresets, assetsBaseUrl) {
-    try {
-        // Handle font selection and preview
-        const fontUrl = FontFinder.findFont(
-            fontData,
-            selectedPresets.model,
-            selectedPresets.epochs,
-            selectedPresets.samples,
-            selectedPresets.fontNumber
-        );
-
-        // Generate full font URLs
-        const fontUrls = GetFont.getFontUrls(fontUrl, assetsBaseUrl);
-
-        // Apply the font to the preview area using the woff2 URL
-        await PreviewFont.applyFontToPreview(fontUrls.woff2);
-
-        // Set the download link for the font using the otf URL
-        await DownloadFont.setFontDownloadButton(fontUrls.otf);
-}
