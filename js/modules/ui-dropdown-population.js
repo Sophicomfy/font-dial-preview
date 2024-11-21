@@ -64,9 +64,6 @@ class UIDropdownPopulation {
             }
             optionsContainer.appendChild(optionElement);
         });
-
-        // Make options visible
-        optionsContainer.classList.remove("hidden");
     }
 
     clearDropdownOptions(optionsContainer) {
