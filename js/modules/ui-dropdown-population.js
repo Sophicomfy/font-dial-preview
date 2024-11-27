@@ -1,6 +1,4 @@
-// ui-dropdown-population.js
-
-class UIDropdownPopulation {
+class lttraiUIDropdownPopulation {
     constructor(uiState) {
         this.uiState = uiState;
         this.dropdownMappings = {
@@ -22,6 +20,7 @@ class UIDropdownPopulation {
             },
         };
         this.dropdownElements = this.initializeDropdowns();
+        console.log('lttraiUIDropdownPopulation: Initialized dropdown elements', this.dropdownElements);
     }
 
     initializeDropdowns() {
@@ -32,14 +31,15 @@ class UIDropdownPopulation {
         return dropdownElements;
     }
 
-    populateDropdowns() {
+    populateDropdowns(uiState = this.uiState) {
         Object.keys(this.dropdownMappings).forEach((key) => {
             const { selectedKey, availableKey } = this.dropdownMappings[key];
             const dropdownElement = this.dropdownElements[key];
-            const selectedValue = this.uiState.selectedOptions[selectedKey];
-            const availableOptions = this.uiState.availableOptions[availableKey];
+            const selectedValue = uiState.selectedOptions[selectedKey];
+            const availableOptions = uiState.availableOptions[availableKey];
             this.populateDropdown(dropdownElement, availableOptions, selectedValue);
         });
+        console.log('lttraiUIDropdownPopulation: Dropdowns populated with current uiState', uiState);
     }
 
     populateDropdown(element, options, selectedValue) {
@@ -64,6 +64,8 @@ class UIDropdownPopulation {
             }
             optionsContainer.appendChild(optionElement);
         });
+
+        console.log(`lttraiUIDropdownPopulation: Updated dropdown for ${element.className} with selected value ${selectedValue}`);
     }
 
     clearDropdownOptions(optionsContainer) {
@@ -72,7 +74,13 @@ class UIDropdownPopulation {
         }
     }
 
+    updateStateAndPopulate(newUiState) {
+        this.uiState = newUiState;
+        this.populateDropdowns();
+        console.log('lttraiUIDropdownPopulation: State updated and dropdowns repopulated', newUiState);
+    }
+
     logDropdownState() {
-        console.log("UI Dropdown State:", this.uiState);
+        console.log("lttraiUIDropdownPopulation: Current UI Dropdown State", this.uiState);
     }
 }

@@ -1,6 +1,6 @@
 // `presets.js`
 
-const Presets = {
+const lttraiAppPresets = {
     assetsBaseUrl: 'https://assets.lttrcorp.com/',
     jsonUrl: 'https://assets.lttrcorp.com/2024-10-01-ai-font-tester/ai_testing_samples/fonts_data.json',
     defaultPresets: {

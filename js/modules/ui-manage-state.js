@@ -1,6 +1,4 @@
-// ui-manage-state.js
-
-class UIManageState {
+class lttraiUIManageState {
     constructor(fontData, defaultPresets) {
         this.fontData = fontData;
         this.defaultPresets = defaultPresets;
@@ -25,7 +23,7 @@ class UIManageState {
             selectedSample: samples,
             selectedFontNumber: fontNumber,
         };
-        console.log('ui-state-management availableOptions:', this.uiState);
+        this.logUIState();
     }
 
     updateAvailableOptions(selectedModel) {
@@ -47,12 +45,18 @@ class UIManageState {
             this.uiState.selectedOptions.selectedSample = this.uiState.availableOptions.samplesRange[0];
             this.uiState.selectedOptions.selectedFontNumber = this.uiState.availableOptions.fontNumberRange[0];
         } else {
-            this.uiState.selectedOptions[newSelectedOption] = newSelectedOptionValue;
+            const optionKeyMap = {
+                'epochsRange': 'selectedEpoch',
+                'samplesRange': 'selectedSample',
+                'fontNumberRange': 'selectedFontNumber'
+            };
+            const selectedOptionKey = optionKeyMap[newSelectedOption] || newSelectedOption;
+            this.uiState.selectedOptions[selectedOptionKey] = newSelectedOptionValue;
         }
-        console.log('ui-state-management availableOptions:', this.uiState);
+        this.logUIState();
     }
 
     logUIState() {
-        console.log('Current UI State:', this.uiState);
+        console.log('lttraiUIManageState output uiState:', JSON.parse(JSON.stringify(this.uiState)));
     }
 }

@@ -1,5 +1,5 @@
 // server-fetch-json.js
-const Server = {
+const lttraiAppServer = {
     async fetchFontData(url) {
         if (!url) {
             throw new Error('A valid JSON URL must be provided.');

@@ -1,6 +1,4 @@
-// ui-font-management.js
-
-const FontManagement = {
+const lttraiUIFontManagement = {
     findFont(uiState, fontData) {
         const { selectedModel, selectedEpoch, selectedSample, selectedFontNumber } = uiState.selectedOptions;
 
@@ -13,8 +11,8 @@ const FontManagement = {
 
         console.log('Searching for font with parameters:', {
             model: selectedModel,
-            epoch: selectedEpoch,
-            sample: selectedSample,
+            epochs: selectedEpoch,
+            samples: selectedSample,
             fontNumber: selectedFontNumber
         });
 
@@ -24,22 +22,25 @@ const FontManagement = {
             font.fontNumber === selectedFontNumber
         );
 
-        if (font && font.fontUrl) {
-            console.log('Matching font found:', font.fontUrl);
-            return font.fontUrl;
+        if (font) {
+            console.log('Matching font found:', { woff2: font.woff2Url, otf: font.otfUrl });
+            return {
+                woff2: font.woff2Url,
+                otf: font.otfUrl
+            };
         } else {
             console.error('Matching font not found in the font data.');
             return null;
         }
     },
 
-    generateFontUrls(fontUrl, baseUrl) {
-        if (!fontUrl || !baseUrl) {
-            throw new Error('Invalid fontUrl or baseUrl provided.');
+    generateFontUrls(fontUrls, baseUrl) {
+        if (!fontUrls || !baseUrl) {
+            throw new Error('Invalid font URLs or baseUrl provided.');
         }
 
-        const woff2Url = fontUrl.replace('./web/', baseUrl);
-        const otfUrl = woff2Url.replace('.woff2', '.otf');
+        const woff2Url = fontUrls.woff2.replace('./web/', baseUrl);
+        const otfUrl = fontUrls.otf.replace('./web/', baseUrl);
 
         console.log('Font URLs generated:', { woff2: woff2Url, otf: otfUrl });
 
