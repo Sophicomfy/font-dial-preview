@@ -1,6 +1,7 @@
 const lttraiAppPresets = {
     assetsBaseUrl: 'https://assets.lttrcorp.com/',
     jsonUrl: 'https://assets.lttrcorp.com/2024-10-01-ai-font-tester/ai_testing_samples/fonts_data.json',
+    previewImagesBaseUrl: 'https://assets.lttrcorp.com/2024-10-01-ai-font-tester/images/_ahoy/',
     defaultPresets: {
         model: 'LTTR24-FT',
         epochs: 1100,
@@ -29,32 +30,32 @@ const lttraiAppServer = {
 function lttraiUIDropdownInteractions() {
     document.addEventListener('click', function (event) {
         const dropdownOptions = document.querySelectorAll('.dropdown-options');
-        
+
         if (event.target.matches('.dropdown-option')) {
             const clickedOption = event.target;
             const parentDropdownOptions = clickedOption.closest('.dropdown-options');
-            
+
             if (parentDropdownOptions) {
                 const newSelectedOption = parentDropdownOptions.getAttribute('data');
                 const newSelectedOptionValue = clickedOption.getAttribute('data-value');
-                
+
                 console.log(`newSelectedOption = ${newSelectedOption}`);
                 console.log(`newSelectedOptionValue = ${newSelectedOptionValue}`);
-                
+
                 const optionSelectedEvent = new CustomEvent('optionSelected', {
                     detail: {
                         newSelectedOption,
                         newSelectedOptionValue
                     }
                 });
-                
+
                 document.dispatchEvent(optionSelectedEvent);
                 parentDropdownOptions.classList.add('hidden');
             }
         } else if (event.target.matches('.selected-item')) {
             const selectedItem = event.target;
             const siblingDropdown = selectedItem.parentElement.querySelector('.dropdown-options');
-            
+
             if (siblingDropdown.classList.contains('hidden')) {
                 dropdownOptions.forEach(function (dropdown) {
                     dropdown.classList.add('hidden');
@@ -75,8 +76,6 @@ function lttraiUIDropdownInteractions() {
         }
     });
 }
-
-// ui-manage-state.js
 
 class lttraiUIManageState {
     constructor(fontData, defaultPresets) {
@@ -140,7 +139,6 @@ class lttraiUIManageState {
         console.log('lttraiUIManageState output uiState:', JSON.parse(JSON.stringify(this.uiState)));
     }
 }
-
 
 class lttraiUIDropdownPopulation {
     constructor(uiState) {
@@ -232,148 +230,170 @@ class lttraiUIDropdownPopulation {
 const lttraiUIFontManagement = {
     findFont(uiState, fontData) {
         const { selectedModel, selectedEpoch, selectedSample, selectedFontNumber } = uiState.selectedOptions;
- 
+
         if (!fontData?.model?.[selectedModel]) {
             throw new Error(`Model "${selectedModel}" not found`);
         }
- 
+
         const fonts = fontData.model[selectedModel].generatedFonts;
         const fontKey = `${selectedFontNumber}-${selectedEpoch}-${selectedSample}`;
-        
+
         const font = fonts[fontKey];
-        
+
         if (!font) {
             throw new Error(`Font not found for ${fontKey}`);
         }
- 
+
         return {
             woff2: font.woff2Url,
             otf: font.otfUrl
         };
     },
- 
+
     generateFontUrls(fontUrls, baseUrl) {
         if (!fontUrls?.woff2 || !fontUrls?.otf || !baseUrl) {
             throw new Error('Invalid font URLs or baseUrl');
         }
- 
+
         const normalizeUrl = (url) => {
             const path = url.replace('./web/', '');
             return new URL(path, baseUrl).toString();
         };
- 
+
         return {
             woff2: normalizeUrl(fontUrls.woff2),
             otf: normalizeUrl(fontUrls.otf)
         };
     },
- 
+
     async applyFontToPreview(woff2Url) {
         if (!woff2Url) {
             throw new Error('Invalid woff2Url');
         }
- 
+
         const fontFamily = this.generateFontFamilyName(woff2Url);
         const font = new FontFace(fontFamily, `url(${woff2Url})`);
-        
+
         try {
             await font.load();
             document.fonts.add(font);
- 
+
             const previewElement = document.querySelector('.font-preview[data-lttrface-preview]');
             if (!previewElement) {
                 throw new Error('Preview element not found');
             }
- 
+
             previewElement.style.fontFamily = `${fontFamily}, sans-serif`;
- 
+
         } catch (error) {
             throw new Error(`Font application failed: ${error.message}`);
         }
     },
- 
+
     generateFontFamilyName(fontUrl) {
         const sanitize = (str) => str.replace(/[^a-z0-9-]/gi, '-');
         const fileName = fontUrl.split('/').pop().replace('.woff2', '');
         return `preview-${sanitize(fileName)}`;
     },
- 
+
     async configureDownloadButton(otfUrl) {
         const downloadButton = document.querySelector('.button--lttrai--download-font');
         if (!otfUrl || !downloadButton) {
             throw new Error('Invalid otfUrl or button not found');
         }
- 
+
         try {
             const response = await fetch(otfUrl, { method: 'HEAD' });
             if (!response.ok) {
                 throw new Error(`Invalid font URL: ${response.status}`);
             }
- 
+
             downloadButton.href = otfUrl;
             downloadButton.download = otfUrl.split('/').pop();
- 
+
         } catch (error) {
             throw new Error(`Download configuration failed: ${error.message}`);
         }
     }
+};
+
+const lttraiUIReferencePreview = {
+    findReferenceImage(selectedFontNumber) {
+        if (!selectedFontNumber) {
+            throw new Error('Invalid font number');
+        }
+        return `${selectedFontNumber}.svg`;
+    },
+ 
+    async updateReferencePreview(previewUrl) {
+        const previewElement = document.querySelector('img[data="referencePreviewImage"]');
+        if (!previewElement) {
+            throw new Error('Preview element not found');
+        }
+ 
+        try {
+            const response = await fetch(previewUrl, { method: 'HEAD' });
+            if (!response.ok) {
+                throw new Error(`Invalid preview URL: ${response.status}`);
+            }
+            console.log('lttraiUIReferencePreview referencePreviewImageUrl:', previewUrl);
+            previewElement.src = previewUrl;
+        } catch (error) {
+            throw new Error(`Preview update failed: ${error.message}`);
+        }
+    },
+ 
+    async applyReferenceToPreview(uiState, baseUrl) {
+        if (!uiState?.selectedOptions?.selectedFontNumber || !baseUrl) {
+            throw new Error('Invalid state or baseUrl');
+        }
+ 
+        const imageName = this.findReferenceImage(uiState.selectedOptions.selectedFontNumber);
+        const fullUrl = new URL(imageName, baseUrl).toString();
+ 
+        await this.updateReferencePreview(fullUrl);
+    }
  };
-
-(async function lttraiAppOrchestrate () {
+ 
+ (async function lttraiAppOrchestrate() {
     try {
-        const { assetsBaseUrl, jsonUrl, defaultPresets } = lttraiAppPresets;
-
-        // Fetch font data from the server
+        const { assetsBaseUrl, jsonUrl, previewImagesBaseUrl, defaultPresets } = lttraiAppPresets;
+ 
         const fontData = await lttraiAppServer.fetchFontData(jsonUrl);
-
-        // Initialize and manage UI state
         const uiManager = new lttraiUIManageState(fontData, defaultPresets);
-
-        // Initialize dropdown population
         const dropdownPopulator = new lttraiUIDropdownPopulation(uiManager.uiState);
-
-        // Populate dropdowns with the initial state
+ 
         dropdownPopulator.populateDropdowns();
-
-        // Initialize dropdown interactions
         lttraiUIDropdownInteractions();
-
-        // Define a function to update the font based on the current uiState
-        async function updateFont() {
+ 
+        async function updateUI() {
             const fontUrls = lttraiUIFontManagement.findFont(uiManager.uiState, fontData);
-
+ 
             if (fontUrls) {
                 const { woff2, otf } = lttraiUIFontManagement.generateFontUrls(fontUrls, assetsBaseUrl);
-
-                await lttraiUIFontManagement.applyFontToPreview(woff2);
-
-                await lttraiUIFontManagement.configureDownloadButton(otf);
+                await Promise.all([
+                    lttraiUIFontManagement.applyFontToPreview(woff2),
+                    lttraiUIFontManagement.configureDownloadButton(otf),
+                    lttraiUIReferencePreview.applyReferenceToPreview(uiManager.uiState, previewImagesBaseUrl)
+                ]); 
             } else {
-                console.error('Font URLs not found for the current selection.');
+                throw new Error('Font URLs not found for the current selection.');
             }
         }
-
-        // Apply the font initially
-        await updateFont();
-
-        // Listen for `optionSelected` events
+ 
+        await updateUI();
+ 
         document.addEventListener('optionSelected', async (event) => {
             const { newSelectedOption, newSelectedOptionValue } = event.detail;
-
-            // Update UI state
+ 
             uiManager.updateUIState(newSelectedOption, newSelectedOptionValue);
-
-            // Update dropdownPopulator's uiState
             dropdownPopulator.uiState = uiManager.uiState;
-
-            // Repopulate dropdowns with the updated state
             dropdownPopulator.populateDropdowns();
-
-            // Update the font based on the new uiState
-            await updateFont();
+ 
+            await updateUI();
         });
-
+ 
     } catch (error) {
         console.error('Error initializing the app:', error);
     }
-})();
+ })();
